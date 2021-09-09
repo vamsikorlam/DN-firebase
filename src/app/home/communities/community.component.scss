@@ -1,0 +1,584 @@
+//setting max width
+.maxwidthclass {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.community-landing {
+  width: 100%;
+  font-size: 16px;
+}
+.landing-wish {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.max-w {
+  width: 100%;
+}
+.landing-wish-quotes {
+  max-width: 500px;
+  margin-left: 50px;
+}
+.quote-001 {
+  font-size: 1.9em;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.2mm;
+}
+.quote-002 {
+  font-size: 3em;
+  color: #b4cc76;
+  font-weight: 900;
+  letter-spacing: 0.4mm;
+  line-height: 2rem;
+}
+.quote-003 {
+  font-size: 0.8em;
+  color: white;
+}
+.gaping {
+  margin-top: 10px;
+}
+.community-controls {
+  align-items: center;
+}
+.community-options {
+  width: 100%;
+  margin-right: auto;
+  padding-top: 15px;
+  margin-left: auto;
+}
+.button-highlight {
+  color: #869658;
+  outline: none;
+  border: none;
+  background: inherit;
+  font-size: 1em;
+  display: inline-block;
+  margin-right: 10px;
+}
+.button-highlight:focus {
+  text-decoration: underline;
+}
+.button-minimal {
+  color: rgb(56, 56, 56);
+  outline: none;
+  border: none;
+  background: inherit;
+  font-size: 1em;
+  display: inline-block;
+  margin-right: 10px;
+}
+.right-division {
+  text-align: end;
+}
+.button-invite {
+  color: white;
+  background-color: #2d587c;
+  // padding: 7px 17px;
+  width: 220px;
+  height: 46px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.cards-presentation {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* card css */
+
+.community-card-enclosure {
+  font-size: 16px;
+}
+.cardbackground {
+  height: 100%;
+  max-height: 15.625em;
+  min-height: 12.8125em;
+  border-radius: 1.25em;
+  max-width: 325px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 0.5em;
+}
+
+.card-top {
+  position: relative;
+  width: 100%;
+  display: flex;
+  min-height: 3.75em;
+  align-items: center;
+}
+
+.cardicons {
+  width: 2.2em;
+}
+
+.card-bottom {
+  position: absolute;
+  bottom: 0.5em;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#card-row {
+  margin: 0px;
+}
+#colcard {
+  margin-top: 0.2em;
+  padding: 3px;
+}
+.headerfontcolor {
+  line-height: 1em;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: white;
+  display: block;
+  text-align: start;
+}
+.time-stamp {
+  color: white;
+  font-size: 0.7em !important;
+  text-align: start;
+}
+.ml-left-small {
+  padding-left: 0.125rem;
+}
+.img-fluid {
+  height: 2.1875em;
+  width: 2.1875em;
+  border-radius: 1.6875em;
+}
+.card-name {
+  display: inline-block;
+  text-align: start;
+}
+.card-name-over {
+  width: 100%;
+  max-height: 2.1875em;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.metrics {
+  color: white;
+}
+.maximum-width {
+  width: 100%;
+}
+.recommend-bottom {
+  width: 100%;
+  margin-top: 0.9375em;
+  justify-content: center;
+  text-align: center;
+}
+.recommend-bottom-fle {
+  width: 100%;
+  display: flex;
+  padding-top: 0.9375em;
+}
+.service-type {
+  display: block;
+  margin-top: 0.4375em;
+  font-size: 1em;
+  font-weight: 500;
+  color: white;
+}
+.member-count {
+  display: block;
+  color: white;
+  font-size: 0.8em;
+}
+.center-align {
+  justify-content: center;
+  display: flex;
+}
+.join-button {
+  display: block;
+  padding: 0.4375em 1.5em;
+  border-radius: 20px;
+  background-color: #869658;
+  color: white;
+  font-size: 1em;
+  margin-top: 5px;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+.members-avatars {
+  position: relative;
+  width: 50%;
+  height: 3.125em;
+}
+.members-avatars-overlap {
+  height: 1.875em;
+  width: 1.875em;
+  border-radius: 1.6875em;
+  position: absolute;
+  bottom: 0.625em;
+  border: 0.125em solid white;
+}
+.members-avatar-count {
+  width: 1.875em;
+  height: 1.875em;
+  border-radius: 0.9375em;
+  background-color: rgba(0, 0, 0, 0.171);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 1px solid white;
+  position: absolute;
+  top: 10px;
+  left: 43px;
+}
+.card-bottom-icons {
+  color: white;
+}
+
+// community card variation two with join button in buttom
+
+.recommend-bottom {
+  width: 100%;
+  margin-top: 0.9375em;
+  justify-content: center;
+  text-align: center;
+}
+.recommend-bottom-flex {
+  width: 100%;
+  display: flex;
+  padding-top: 0.9375em;
+}
+.service-type {
+  display: block;
+  margin-top: 0.4375em;
+  font-size: 1em;
+  font-weight: 500;
+  color: white;
+}
+.member-count {
+  display: block;
+  color: white;
+  font-size: 0.8em;
+}
+.center-align {
+  justify-content: center;
+  display: flex;
+}
+.join-button {
+  display: block;
+  padding: 0.4375em 1.5em;
+  border-radius: 1.25em;
+  background-color: #869658;
+  color: white;
+  font-size: 1em;
+  margin-top: 0.3125em;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+/* card css */
+
+.viewAllCommunity {
+  margin: 20px 0px 20px 0px;
+}
+
+.venv {
+  align-items: middle;
+  background-color: white;
+  height: 100px;
+}
+
+//community search banner mobile
+.communityheading {
+  color: #869658;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.mobilesearchcontainer .btn {
+  color: #ffffff;
+  border-radius: 30px;
+  background-color: #6e7f40;
+  border-color: #6e7f40;
+  font-size: 10px;
+}
+.mobilesearchcontainerdown .btn {
+  background-color: #1f4a6f;
+  border-radius: 4px;
+  padding: 9px;
+}
+
+.mobilesearchcontainerdown .searchinput {
+  border-radius: 31px 0px 0px 31px;
+  background-color: #f3f4f6;
+}
+
+.mobilesearchcontainerdown .searchbtn {
+  border-radius: 0px 30px 30px 0px;
+  background-color: #6e7f40;
+  color: white;
+}
+
+//filter popover
+
+.outerpopoverdiv {
+  position: fixed;
+  bottom: 0px;
+  width: 100vw;
+
+  background-color: white;
+}
+
+.outerpopoverdiv .heading {
+  font-size: 16px;
+  font-family: 'Helvetica Neue';
+  font-weight: bold;
+}
+
+.outerpopoverdiv .inputstyle {
+  background-color: #f2f2f2;
+  border-radius: 19px;
+  padding-left: 30px;
+}
+.inputlocationouter {
+  position: relative;
+}
+
+.inputlocationouter .searchicon {
+  position: absolute;
+  top: 0px;
+}
+
+.outerpopoverdiv .submitReset {
+  // height:40px;
+
+  border-radius: 30px;
+  border: 1px solid #869658;
+}
+// .outerpopoverdiv .submitReset>div{
+//     height: 40px;
+// }
+
+.outerpopoverdiv .submitReset > div > .leftpart {
+  color: #869658;
+  height: 40px;
+}
+
+.outerpopoverdiv .submitReset > div > .rightpart {
+  background-color: #869658;
+  color: white;
+  height: 40px;
+  border-radius: 0px 30px 30px 0px;
+}
+
+.outerpopoverdiv .custombtn {
+  background: #356083;
+  border-radius: 30px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.closepopover {
+  height: 0px;
+}
+.openpopOver {
+  padding: 30px;
+  height: auto;
+}
+
+::ng-deep .customslider.mat-slider {
+  width: 100%;
+}
+
+::ng-deep .customslider.mat-accent .mat-slider-track-fill,
+.mat-accent .mat-slider-thumb,
+.mat-accent .mat-slider-thumb-label {
+  background-color: #2b5577;
+}
+::ng-deep .customslider.mat-accent .mat-slider-thumb {
+  background-color: #2b5577 !important;
+}
+
+//client screen
+@media (min-width: 1760px) {
+  #cardcontainer.container {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .button-invite {
+    width: 220px;
+    height: 46px;
+  }
+}
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199px) {
+  .button-invite {
+    width: 220px;
+    height: 46px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .button-invite {
+    width: 220px;
+    height: 46px;
+  }
+}
+
+@media (min-width: 322px) and (max-width: 767px) {
+  .community-card-enclosure {
+    font-size: 12px;
+  }
+  .button-invite {
+    width: 220px;
+    height: 46px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 321px) {
+  .communitylanding .container {
+    padding: 0px;
+  }
+
+  .community-card-enclosure {
+    margin: 2px;
+  }
+  .community-card-enclosure {
+    font-size: 10px;
+  }
+
+  .community-landing {
+    font-size: 14px;
+  }
+  .cardbackground {
+    height: 160px;
+  }
+  .community-landing {
+    font-size: 14px;
+  }
+  .cardbackground {
+    height: 160px;
+  }
+
+  .landing-wish-quotes {
+    max-width: 500px;
+    margin-left: 0px;
+  }
+  .cards-presentation {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .right-division {
+    justify-content: center;
+    display: flex;
+  }
+  .left-division {
+    justify-content: center;
+    display: flex;
+    padding-bottom: 15px;
+  }
+  .quote-002 {
+    font-size: 3rem;
+    color: #b4cc76;
+    font-weight: 900;
+    letter-spacing: 0.4mm;
+    line-height: 40px;
+  }
+  .gaping {
+    text-align: center;
+  }
+  .community-landing {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+  }
+  .button-invite {
+    width: 220px;
+    height: 46px;
+  }
+  // .cardbackground{
+  // height: 190px;
+  // border-radius: 20px;
+  // width: 80vw;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center;
+  // padding: 8px;
+  // margin-left: 0px !important;
+  // }
+}
+
+// @media (min-width:551px) and (max-width:768px){
+//
+// }
+
+// @media(max-width:550px){
+//     .landing-wish-quotes{
+//         max-width: 500px;
+//         margin-left: 0px;
+//     }
+//     .cards-presentation{
+//         display: flex;
+//         justify-content: center;
+//         flex-wrap: wrap;
+//     }
+//     .right-division{
+//         justify-content: center;
+//         display: flex;
+//     }
+//     .left-division{
+//         justify-content: center;
+//         display: flex;
+//         padding-bottom: 15px
+//     }
+//     .quote-002{
+//         font-size: 3rem;
+//         color: #b4cc76;
+//         font-weight: 900;
+//         letter-spacing: 0.4mm;
+//         line-height: 40px;
+//     }
+//     .gaping{
+//         text-align: center;
+//     }
+//     .community-landing{
+//         width: 100%;
+//         margin-left: auto;
+//         margin-right: auto;
+//         font-size: 14px;
+//     }
+//     .cardbackground{
+//     height: 190px;
+//     border-radius: 20px;
+//     width: 80vw;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-position: center;
+//     padding: 8px;
+//     margin-left: 0px !important;
+//     }
+
+// }

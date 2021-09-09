@@ -1,0 +1,105 @@
+.main-container-342 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    font-family: 'Roboto';
+    min-height: 600px;
+    font-size: 16px;
+  }
+  .inner-div-342 {
+    height: auto;
+    width: 100%;
+    max-width: 710px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .max-w {
+    width: 100%;
+  }
+  .center-a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .regular-bold {
+    font-size: 2em;
+    color: #333333;
+    font-weight: 600;
+    display: block;
+  }
+  .mail-image img {
+    height: 200px;
+    width: 200px;
+  }
+  .content-presentation {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 10px;
+  }
+  .hello {
+    font-size: 1.25em;
+    font-weight: 600;
+    color: #356083;
+    display: block;
+    margin-bottom: 7px;
+  }
+  .para-342 {
+    font-size: 1.125em;
+    color: #333333;
+  }
+  .login-btn {
+    border-radius: 30px;
+    background-color: #5c6d2e;
+    color: #ffffff;
+    font-size: 1em;
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+  }
+  .copyright-text-342 {
+    font-size: 14px;
+    color: #707070;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .regular-margin {
+    margin-bottom: 25px;
+  }
+  .logo-div-342 img {
+    width: 225px;
+    height: 62px;
+    display: block;
+    margin-bottom: 25px;
+    margin-top: 25px;
+  }
+  .bottom-margin {
+    margin-bottom: 25px;
+  }
+  @media (max-width: 550px) {
+    .content-presentation {
+      background-color: #ffffff;
+      padding: 25px 15px;
+      border-radius: 10px;
+    }
+    .logo-div-342 img {
+      width: 160px;
+      height: 45px;
+      display: block;
+      margin-bottom: 18px;
+      margin-top: 18px;
+    }
+    .regular-margin {
+      margin-bottom: 15px;
+    }
+    .main-container-342 {
+      font-size: 13px;
+    }
+    .mail-image img {
+      height: 130px;
+      width: 130px;
+    }
+  }

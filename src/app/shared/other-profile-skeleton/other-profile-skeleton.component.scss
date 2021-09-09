@@ -1,0 +1,28 @@
+.outer-shell {
+    width: 100%;
+    padding: 25px 60px 0px 60px;
+  }
+  .max-w {
+    width: 100%;
+  }
+  .center-a {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  .text-c {
+    text-align: center;
+  }
+  .flex-e {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  @media (max-width: 550px) {
+    .flex-e {
+      justify-content: center;
+    }
+    .outer-shell {
+      padding: 25px 20px 0px 20px;
+    }
+  }

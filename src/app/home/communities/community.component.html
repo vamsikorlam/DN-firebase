@@ -1,0 +1,272 @@
+<div class="maxwidthclass">
+    <!-- large devices -->
+    <div class="d-none d-md-block">
+        <div class="landing-wish" style="background-image:
+            url('assets/images/community_images/community-banner.jpg');">
+
+            <div class="landing-wish-quotes">
+                <div class="gaping">
+                    <span class="quote-001">Search, Join Community</span>
+                </div>
+                <div class="gaping">
+                    <span class="quote-002">That's All We Do</span>
+                </div>
+                <div class="gaping">
+                    <p class="quote-003">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                        numquam blanditiis
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="cardcontainer">
+        <div class="d-block d-md-none mobilesearchcontainer">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="communityheading">
+                    Community
+                </div>
+                <div>
+                    <button class="btn btn-success" (click)="openDialogComingSoon()">
+                        <img src="assets/images/sell.svg" class="pr-1" style="width: 15px;">
+                        Build your community
+                    </button>
+                </div>
+            </div>
+            <div class="mobilesearchcontainerdown mt-2 d-flex align-items-center">
+                <div style="width: 100%;">
+                    <div class="input-group">
+                        <input type="text" class="form-control searchinput" placeholder="Search for Community"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <span class="input-group-text searchbtn" id="basic-addon2">
+                                <img src="assets/images/community_images/search.svg" alt="search">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="ml-2">
+                    <button class="btn" (click)="$event.stopPropagation();openfilterpopover()">
+                        <img src="../../../assets/images/toggle.svg" alt="icon">
+                    </button>
+                </div> -->
+
+            </div>
+        </div>
+        <div class="community-options">
+            <div class="row community-controls">
+                <div class="col-12 col-md-6 left-division">
+                    <button type="button" class={{buttonLeft}} (click)="swipeDataCommunity()">MY COMMUNITY</button>
+                    <button type="button" class={{buttonRight}} (click)="swipeDataRecommend()">RECOMMENDED</button>
+                </div>
+                <div class="col-12 col-md-6 right-division d-none d-md-block">
+                    <button type="button" class="button-invite" (click)="openDialogComingSoon()"> +
+                        BUILD YOUR COMMUNITY</button>
+                </div>
+            </div>
+
+
+            <div class="max-w" *ngIf="buttonLeft == 'button-highlight'; else recommendCards">
+                <app-community-card-skeleton class='skeleton-width' *ngIf="isLoading" [skLoaderCount]='8'>
+                </app-community-card-skeleton>
+                <div class="row communitycardsmobile" *ngIf="currentData && !isLoading" id="card-row">
+                    <div *ngFor="let community of currentData let i=index;" style="cursor: pointer;"
+                        (click)="navigateToCommunityDetail(community.id)" class="col-6 col-sm-6 col-md-4 col-lg-3"
+                        id="colcard">
+                        <div class="community-card-enclosure">
+                            <div class="card cardbackground"
+                                [style.background-image]="'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url('+community.cover+')'">
+                                <!-- [style.background-image]="'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)), url('+group.cover+')'" -->
+
+                                <div class="card-top">
+                                    <img class="img-fluid" [src]="community.avatar" alt="notfound">
+                                    <div class="card-name" class="ml-2">
+                                        <span class="headerfontcolor">{{community.group_name}}</span>
+                                        <small class="time-stamp">created {{community.time_text}}</small>
+                                    </div>
+                                </div>
+                                <div class="card-bottom">
+                                    <div class="members-avatars">
+                                        <img *ngFor="let image of community.members.slice(0,3); let i = index"
+                                            class="img-fluid members-avatars-overlap" [style.left]="(i*0.9375)+'em'"
+                                            src="{{image.avatar}}" alt="notfd">
+                                        <div *ngIf="community.members.length>4" class="members-avatar-count">
+                                            + {{community.members.length-3}}
+                                        </div>
+                                        <!-- <img class="img-fluid"  style="height:30px;width:30px;border-radius: 27px;position:absolute;
+                                        bottom: 10px;" src="" alt="images from api" > -->
+                                    </div>
+                                    <div class="card-bottom-icons">
+
+                                        <img src='assets/images/community_images/posts.svg' class="cardicons">
+                                        <span class="ml-left-small">{{community.post_count}}</span>
+                                        <img src='assets/images/community_images/chat.svg' class="cardicons">
+                                        <span class="ml-left-small">{{community.chat_count}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div> <!-- *ngIf ends here -->
+
+            <!-- else block -->
+            <ng-template class="max-w" #recommendCards>
+                <div class="cards-presentation width-restrict-002">
+                    <app-community-card-skeleton class='skeleton-width' *ngIf="isLoading" [skLoaderCount]='8'>
+                    </app-community-card-skeleton>
+                    <div class="row" *ngIf="currentData && !isLoading" id="card-row">
+                        <div style="cursor: pointer;" (click)="openDialogComingSoon()"
+                            *ngFor="let community of currentData; let i = index;"
+                            class="col-6 col-sm-6 col-md-4 col-lg-3 " id="colcard">
+                            <div class="community-card-enclosure">
+                                <div class="card cardbackground"
+                                    [style.background-image]="'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url('+community.cover+')'">
+                                    <!-- [style.background-image]="'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)), url('+group.cover+')'" -->
+
+                                    <div class="card-top">
+                                        <img class="img-fluid" [src]="community.avatar" alt="notfound">
+                                        <div class="card-name" class="ml-2">
+                                            <span class="headerfontcolor">{{community.group_name}}</span>
+                                            <small class="time-stamp">created {{community.time_text}}</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="recommend-bottom-flex">
+                                        <div class="recommend-bottom">
+                                            <span class="service-type">{{community.typeName}}</span>
+                                            <span class="member-count">{{community.member_count}} members</span>
+                                            <div class="maximum-width center-align">
+                                                <button type="button" class="join-button"
+                                                    (click)="openDialogComingSoon()">JOIN</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="card-bottom">
+                                            <div class="members-avatars">
+                                                <img *ngFor="let image of community.members.slice(0,3); let i = index"
+                                                    class="img-fluid members-avatars-overlap" [style.left]="(i*15)+'px'"
+                                                    src="{{image.avatar}}" alt="notfd">
+                                                <div *ngIf="community.members.length>4" class="members-avatar-count">
+                                                    + {{community.members.length-3}}
+                                                </div>
+                                                <img class="img-fluid"  style="height:30px;width:30px;border-radius: 27px;position:absolute;
+                                            bottom: 10px;" src="" alt="images from api" >
+                                            </div>
+                                            <div class="card-bottom-icons">
+
+                                                <img src="assets/images/community_images/posts.svg">
+                                                <span class="ml-left-small">1</span>
+                                                <img src="assets/images/community_images/chat.svg">
+                                                <span class="ml-left-small">2</span>
+                                            </div>
+                                        </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </ng-template>
+            <div class="d-flex justify-content-center font-weight-bold text-danger"
+                *ngIf="!isLoading && currentData.length === 0" style="margin-top: 35px; margin-bottom: 35px;">
+                <span>No communities found</span>
+            </div>
+            <!-- cards presentation ends here -->
+            <div class="row justify-content-center viewAllCommunity pb-4" *ngIf="!isLoading && currentData.length > 0">
+                <button type="button" class="button-invite" (click)='navigateToCommunitySearch()'>VIEW ALL
+                    COMMUNITIES</button>
+            </div>
+
+            <!-- <div class="btn-group" dropdown>
+                    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+                        aria-controls="dropdown-basic">
+                        Button dropdown <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                        <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+                        <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                        <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li class="divider dropdown-divider"></li>
+                        <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+                        </li>
+                    </ul>
+                </div> -->
+
+        </div>
+    </div>
+    <!-- <div *ngIf="isMobile" class="outerpopoverdiv"
+        [ngClass]="{'openpopOver':showHidePopOver,'closepopover':!showHidePopOver}" (click)="$event.stopPropagation()">
+        <div class="toppart d-flex justify-content-between mb-2">
+            <div class="heading">Filter</div>
+            <div class="cursor-pointer" (click)="closefilterpopover()">close</div>
+        </div>
+        <div class="bottompart">
+            <div class="heading">Location</div>
+            <div class="inputlocationouter mb-2">
+                <input class="inputstyle" type="text" autocomplete="off" ngx-google-places-autocomplete
+                    (onAddressChange)="handleAddressChange($event)" class=" form-control dropdown-toggle "
+                    [(ngModel)]="searchLocation" />
+                <img src="" class="searchicon" alt="searchicon">
+            </div>
+
+            <div>
+                <button class="btn-primary btn custombtn">5 miles</button>
+            </div>
+            <div class="mb-2 ">
+                <mat-slider class="customslider" min="1" max="5" step="0.5" value="1.5"></mat-slider>
+            </div>
+            <div class="sortBymostrecent">
+                <div class="heading">
+                    Sortby
+                </div>
+                <div>
+                    <mat-radio-group class="mb-1 d-flex justify-content-between">
+                        <mat-radio-button class="col-md-12" [value]="''" [disableRipple]="true" [checked]="true">Most
+                            Recent</mat-radio-button>
+                        <br />
+                        <mat-radio-button class="col-md-12" [value]="''" [disableRipple]="true" [checked]="true">Oldest
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+
+            <div class="sortByCommunites">
+                <div class="heading">
+                    Communities
+                </div>
+                <div>
+                    <mat-radio-group class="mb-1 d-flex justify-content-between">
+                        <mat-radio-button class="col-md-12" [value]="''" [disableRipple]="true" [checked]="true">My
+                            Communities</mat-radio-button>
+
+                        <mat-radio-button class="col-md-12" [value]="''" [disableRipple]="true" [checked]="true">
+                            Suggested Communities</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="priceSlider">
+                <div>
+                    <span class="heading">price</span> $130
+                </div>
+                <div>
+                    <mat-slider class="customslider" min="1" max="5" step="0.5" value="1.5"></mat-slider>
+                </div>
+            </div>
+
+            <div class="submitReset">
+                <div class="d-flex align-items-center">
+                    <div style="width:50%" class="d-flex align-items-center justify-content-center leftpart">Reset</div>
+                    <div style="width:50%" class="d-flex align-items-center justify-content-center rightpart">Apply
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+</div>

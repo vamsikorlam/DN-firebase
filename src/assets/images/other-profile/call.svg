@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="110" height="110" viewBox="0 0 110 110">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#869658"/>
+      <stop offset="1" stop-color="#5c6d2e"/>
+    </linearGradient>
+    <filter id="Path_1840" x="0" y="0" width="110" height="110" filterUnits="userSpaceOnUse">
+      <feOffset dy="8" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_1969" data-name="Group 1969" transform="translate(-232 -288)">
+    <g transform="matrix(1, 0, 0, 1, 232, 288)" filter="url(#Path_1840)">
+      <path id="Path_1840-2" data-name="Path 1840" d="M25,0A25,25,0,1,1,0,25,25,25,0,0,1,25,0Z" transform="translate(30 22)" fill="url(#linear-gradient)"/>
+    </g>
+    <path id="Icon_material-phone" data-name="Icon material-phone" d="M8.522,13.156a16.832,16.832,0,0,0,7.322,7.322l2.444-2.444a1.1,1.1,0,0,1,1.133-.267,12.674,12.674,0,0,0,3.967.633A1.114,1.114,0,0,1,24.5,19.511v3.878A1.114,1.114,0,0,1,23.389,24.5,18.887,18.887,0,0,1,4.5,5.611,1.114,1.114,0,0,1,5.611,4.5H9.5a1.114,1.114,0,0,1,1.111,1.111,12.623,12.623,0,0,0,.633,3.967,1.115,1.115,0,0,1-.278,1.133L8.522,13.156Z" transform="translate(273.184 319.794)" fill="#fff"/>
+  </g>
+</svg>

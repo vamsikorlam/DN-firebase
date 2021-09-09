@@ -1,0 +1,45 @@
+<div class="card-product shadow" (click)="onClickFn(postId)">
+  <div class="image-container" [style.background-image]="'url(' + postUri + ')'">
+    <div class="max-w d-flex text-end pr-1">
+      <div class="icons-container">
+        <div *ngIf="showSettingsIcon" class="icon-div-menu d-none d-md-block">
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+        <div class="icon-div-likes">
+          <img src="assets/images/other-profile/like.svg" />
+          <span>
+            {{ postLikesCount > 0 ? postLikesCount : 0 }}
+          </span>
+        </div>
+        <div *ngIf="showLockIcon" class="icon-div-bare d-none d-md-block">
+          <img class="temporary" src="assets/images/other-profile/privacy.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="product-details-001">
+    <div class="max-w d-flex col-height-1 ">
+      <div class="major-col">
+        <span class="product-name hdr1_price_green" *ngIf="postProductType == 1">{{
+          postName | stringLength: '28'
+          }}</span>
+        <span class="product-name hdr1_price_blue" *ngIf="!postProductType || postProductType == 2">{{
+          postName | stringLength: '28'
+          }}</span>
+        <!-- | stringLength: '28' -->
+      </div>
+      <div class="minor-col text-end">
+        <span class="product-price">${{ postPrice }}</span>
+      </div>
+    </div>
+    <div class="max-w d-flex col-height-1">
+      <div class="major-col">
+        <span class="product-address">{{ postLocation | stringLength: '28' }}</span>
+        <!-- | stringLength: '28' -->
+      </div>
+      <div class="minor-col text-end">
+        <span class="product-time">{{ postTimeText }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,168 @@
+<div class="input-group inputsGroup">
+  <div class="dropdown productsDropdown">
+    <input
+      type="text"
+      autocomplete="off"
+      placeholder="What are you looking for?"
+      class="form-control dropdown-toggle productSearch"
+      id="menu2"
+      name="productsearch"
+      data-toggle="dropdown"
+      [(ngModel)]="searchWord"
+      (keyup.enter)="onSearchChange($event.target.value)"
+      (click)="close()"
+    />
+    <ul class="dropdown-menu searchBarDropDown" role="menu" aria-labelledby="menu2">
+      <li class="dropdown-item search-history-li disabled">
+        <p class="recentHeadingForDropDown">Recent</p>
+      </li>
+      <li
+        class="list-group-item search-history-li"
+        *ngFor="let search of productSearchHistory"
+        (click)="onSearchChange(search)"
+      >
+        {{ search }}
+      </li>
+      <li class="list-group-item li-fix-bottom" style="font-size: 12px" (click)="clearSearchHistory()">
+        Clear Search History
+      </li>
+    </ul>
+  </div>
+  <div class="dropdownForLocations dropdown">
+    <input
+      appAutoFocus
+      type="text"
+      ngx-google-places-autocomplete
+      (onAddressChange)="handleAddressChange($event)"
+      autocomplete="off"
+      placeholder="Location*"
+      class="form-control dropdown-toggle locationSearch"
+      [(ngModel)]="searchLocation"
+      (ngModelChange)="close()"
+    />
+    <img
+      src="assets/images/header_images/caret.svg"
+      class="locationDropDownIcon"
+      (click)="hide()"
+      (click)="$event.stopPropagation()"
+    />
+
+    <ng-container *ngIf="closeDrop">
+      <ul #dropdownLocation class="dropdown-menu locationsearchDropDown">
+        <li class="currentLocationElements">
+          <img
+            src="assets/images/header_images/current_location.svg"
+            class="currentLocationIcon"
+            alt="currentLocation icon"
+          />
+          <span class="currentLocation"><span (click)="getLatLng()">Use current location</span> </span>
+        </li>
+        <hr />
+        <li class="recentLocationsHeading">RECENT LOCATIONS</li>
+        <ng-container *ngIf="checkLocationSearch()">
+          <li
+            *ngFor="let search of locationSearchHistory"
+            class="d-flex align-items-center mb-3"
+            (click)="setSearchLocation(search)"
+          >
+            <img src="assets/images/map-marker.svg" class="popularLocationsIcon" />
+            <p class="recentLocations">{{ search.name }}</p>
+          </li>
+        </ng-container>
+
+        <li
+          *ngIf="checkLocationSearch(); else nolocationSearch"
+          class="list-group-item customlist"
+          (click)="clearLocationSearchHistory()"
+        >
+          Clear Search History
+        </li>
+        <ng-template #nolocationSearch>
+          <li class="list-group-item customlist">No Recent Locations Found</li>
+        </ng-template>
+      </ul>
+    </ng-container>
+  </div>
+
+  <div class="input-group-append">
+    <button class="btn searchButton" type="button" (click)="onSearchChange(searchWord)">
+      <img src="assets/images/search.svg" class="searchButtonIcon" width="19" height="19" alt="search" />
+    </button>
+  </div>
+</div>
+
+<!-- mobiletab -->
+<div class="current_locationouterTab d-block d-md-none">
+  <div class="header d-flex align-items-center pl-2">
+    <div class="back mr-2" (click)="closeComponent()">
+      <img src="assets/images/header_images/backIcon.svg" />
+    </div>
+    <div class="">Location</div>
+  </div>
+  <div class="currentLocationtab" style="height: 400px">
+    <div class="LocationSearchOuterdiv mb-3">
+      <input
+        style="padding-left: 30px"
+        type="text"
+        ngx-google-places-autocomplete
+        (onAddressChange)="handleAddressChange($event)"
+        autocomplete="off"
+        placeholder=""
+        class="form-control mb-3"
+        [(ngModel)]="searchLocation"
+        (ngModelChange)="close()"
+      />
+      <div class="searchicon"><img src="assets/images/header_images/search.svg" /></div>
+
+      <div class="currentLocation d-flex align-items-center">
+        <div class="mr-3">
+          <img src="assets/images/header_images/current_location.svg" />
+        </div>
+        <div>
+          <div style="color: #869658; font-weight: bold" (click)="getLatLng()">Use current location</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="recentLocation mb-2">
+      <div class="labelcolor mb-3">RECENT LOCATIONS</div>
+      <div class="align-items-center">
+        <ng-container *ngIf="checkLocationSearch()">
+          <div
+            *ngFor="let search of locationSearchHistory"
+            class="d-flex align-items-center mb-3"
+            (click)="setSearchLocation(search)"
+          >
+            <div class="ml-2 mr-2"><img src="assets/images/map-marker.svg" /></div>
+            <p class="recentLocations">{{ search.name }}</p>
+          </div>
+        </ng-container>
+
+        <div
+          *ngIf="checkLocationSearch(); else nolocationSearch"
+          class="list-group-item customlist"
+          (click)="clearLocationSearchHistory()"
+          style="height: 40px; border-bottom: 1px solid black"
+        >
+          Clear Search History
+        </div>
+        <ng-template #nolocationSearch>
+          <li class="list-group-item customlist">No Recent Locations Found</li>
+        </ng-template>
+      </div>
+    </div>
+    <!-- <div class="popularLocation mb-1">
+      <div class="labelcolor">
+        POPULAR LOCATIONS
+      </div>
+      <div class="d-flex align-items-center" style="height: 40px; border-bottom: 1px solid black;">
+        <div class="ml-2 mr-2">
+          <img src="assets/images/map-marker.svg">
+        </div>
+        <div>
+          Carmel
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>

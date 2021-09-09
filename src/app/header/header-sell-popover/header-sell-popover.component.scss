@@ -1,0 +1,42 @@
+/* Pop over */
+
+.popOver {
+  width: 150px;
+}
+.postAGood {
+  height: 48px;
+  border-bottom: 1px solid lightgray;
+  color: #154166;
+  font-size: 14px;
+  font-weight: bold;
+}
+.postAGoodIcon {
+  padding-right: 15px;
+  color: #154166;
+}
+.postASkill {
+  height: 48px;
+  color: #869658;
+  font-size: 14px;
+  font-weight: bold;
+}
+.postASkillIcon {
+  padding-right: 15px;
+}
+
+::ng-deep .arrow {
+  left: 146px !important;
+  top: -8px !important;
+  /* right: 20px !important; */
+  /* right:20px !important; */
+}
+::ng-deep .popover {
+  left: -30px !important;
+  top: 14px !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 16px !important ;
+  border-bottom-right-radius: 16px !important ;
+}
+
+/* Pop over */

@@ -1,0 +1,149 @@
+<div class="profilePopover d-none d-md-block">
+  <div class="d-flex align-items-center userDetails">
+    <div>
+      <img [src]="getProfileImage()" width="40" height="40" class="image-fluid" style="border-radius: 20px" />
+    </div>
+    <div class="ml-2">
+      <div class="helloText">Hello,</div>
+      <div class="userName">
+        {{ user.user_fullname }}
+      </div>
+      <div class="viewAndEdit"><a class="pointer" (click)="openDialogComingsoon()">View and edit profile</a></div>
+    </div>
+  </div>
+  <div class="d-flex align-items-center profileItems ml-2">
+    <div>
+      <img src="assets/images/header_images/my_posts.svg" class="profileIcons" alt="icons" />
+    </div>
+    <div><a class="pointer" (click)="openDialogComingsoon();">My Posts</a></div>
+  </div>
+  <div class="d-flex align-items-center profileItems ml-2">
+    <div>
+      <img src="assets/images/header_images/review.svg" class="profileIcons" alt="icons" />
+    </div>
+    <div><a class="pointer" (click)="openDialogComingsoon()">My Reviews</a></div>
+  </div>
+  <div class="d-flex align-items-center profileItems ml-2 pointer" (click)="openMyCommunities()">
+    <div>
+      <img src="assets/images/header_images/my_reviews.svg" class="profileIcons" alt="icons" />
+    </div>
+    <div>My Communities</div>
+  </div>
+  <div class="d-flex align-items-center profileItems ml-2">
+    <div>
+      <img src="assets/images/header_images/settings.svg" class="profileIcons" alt="icons" />
+    </div>
+    <div><a class="pointer" (click)="openDialogComingsoon()">Settings</a></div>
+  </div>
+  <div class="d-flex align-items-center profileItems ml-2" style="border-bottom: none">
+    <div>
+      <img src="assets/images/header_images/logout.svg" class="profileIcons" alt="icons" />
+    </div>
+    <div style="cursor: pointer" (click)="logOutUser()">Logout</div>
+  </div>
+</div>
+
+<!-- mobile tab -->
+<div class="main-container-pm d-block d-md-none">
+  <div class="d-flex align-items-center header p-3">
+    <div (click)="closeProfilePopOvertab()" class="mr-2"><img src="assets/images/header_images/backIcon.svg" /></div>
+    <div>My Account</div>
+  </div>
+  <div class="down-part">
+    <div class="row no-gutters">
+      <div class="col-4 d-flex center-a">
+        <div class="avatar-presentation">
+          <div class="profile-photo" [ngStyle]="{ 'background-image': 'url(' + user.user_profile + ')' }">
+            <img src="assets/images/other-profile/check.svg" />
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="row no-gutters">
+          <div class="col-11 name">
+            <span>{{ user.user_fullname }}</span>
+          </div>
+          <div class="col-1 d-flex center-a edit">
+            <img src="assets/images/other-profile/edit.svg" />
+          </div>
+        </div>
+        <div class="max-w userid">
+          <span>{{ user.user_username }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="max-w options-presentaion">
+      <div (click)="openDialogComingsoon()" class="option-box row no-gutters">
+        <div class="col-2 d-flex center-a option-box-icon">
+          <img src="assets/images/other-profile/postcard.svg" />
+        </div>
+        <div class="col-8 option-name">
+          <span>My Posts</span>
+        </div>
+        <div class="col-2 d-flex center-a chev-right">
+          <img src="assets/images/other-profile/leftarrow.svg" />
+        </div>
+      </div>
+
+      <div (click)="openDialogComingsoon()" class="option-box row no-gutters">
+        <div class="col-2 d-flex center-a option-box-icon">
+          <img src="assets/images/other-profile/settings.svg" />
+        </div>
+        <div class="col-8 option-name">
+          <span>My Communities</span>
+        </div>
+        <div class="col-2 d-flex center-a chev-right">
+          <img src="assets/images/other-profile//leftarrow.svg" />
+        </div>
+      </div>
+
+      <div (click)="openDialogComingsoon()" class="option-box row no-gutters">
+        <div class="col-2 d-flex center-a option-box-icon">
+          <img src="assets/images/other-profile/review.svg" />
+        </div>
+        <div class="col-8 option-name">
+          <span>My Reviews</span>
+        </div>
+        <div class="col-2 d-flex center-a chev-right">
+          <img src="assets/images/other-profile//leftarrow.svg" />
+        </div>
+      </div>
+
+      <div (click)="openDialogComingsoon()" class="option-box row no-gutters">
+        <div class="col-2 d-flex center-a option-box-icon">
+          <img src="assets/images/other-profile/brain.svg" />
+        </div>
+        <div class="col-8 option-name">
+          <span>Skills Details</span>
+        </div>
+        <div class="col-2 d-flex center-a chev-right">
+          <img src="assets/images/other-profile//leftarrow.svg" />
+        </div>
+      </div>
+
+      <div (click)="openDialogComingsoon()" class="option-box row no-gutters">
+        <div class="col-2 d-flex center-a option-box-icon">
+          <img src="assets/images/other-profile/settings.svg" />
+        </div>
+        <div class="col-8 option-name">
+          <span>Notifications</span>
+        </div>
+        <div class="col-2 d-flex center-a chev-right">
+          <img src="assets/images/other-profile//leftarrow.svg" />
+        </div>
+      </div>
+
+      <div (click)="openDialogComingsoon()" class="option-box row no-gutters">
+        <div class="col-2 d-flex center-a option-box-icon">
+          <img src="assets/images/other-profile/settings.svg" />
+        </div>
+        <div class="col-8 option-name">
+          <span>Settings</span>
+        </div>
+        <div class="col-2 d-flex center-a chev-right">
+          <img src="assets/images/other-profile//leftarrow.svg" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

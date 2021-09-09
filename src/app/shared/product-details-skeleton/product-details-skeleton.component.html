@@ -1,0 +1,23 @@
+<div class="mt-xl-5 row">
+  <div class="col-md-5">
+    <ngx-skeleton-loader [theme]="{ width: '30vw', height: '30vh' }" appearance="square"> </ngx-skeleton-loader>
+  </div>
+  <div class="col-md-5 pr-5">
+    <ng-container *ngFor="let i of skLoaderCount | fill">
+      <div class="gravatar-title">
+        <div>
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{
+              width: '50vw',
+              'border-radius': '0',
+              height: '3vh',
+              'margin-bottom': '10px'
+            }"
+          ></ngx-skeleton-loader>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="col-md-2"></div>
+</div>

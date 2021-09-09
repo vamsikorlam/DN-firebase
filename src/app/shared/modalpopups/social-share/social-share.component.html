@@ -1,0 +1,100 @@
+<div class="container-main">
+    <div class="row no-gutters max-w options-row standard-padding">
+        <div class="col-6">
+            <span class="share-span">Share</span>
+        </div>
+        <div class="col-6 d-flex end-a">
+            <div (click)="close()" class="d-flex center-a close-dialog">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+    <div class="max-w share-options">
+        <div class="row no-gutters">
+            <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-blue pointer-cursor" (click)="socialShare('Twitter')">
+                    <img src="assets/images/social_shareicons/twitter.png">
+                </div>
+                <span class="social-id">
+                    Twitter
+                </span>
+            </div>
+            <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-facebook pointer-cursor" (click)="socialShare('Facebook')">
+                    <img src="assets/images/social_shareicons/facebook.png">
+                </div>
+                <span class="social-id">
+                    Facebook
+                </span>
+            </div>
+            <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-whatsapp pointer-cursor" (click)="socialShare('Whatapp')">
+                    <img src="assets/images/social_shareicons/whatsapp.png">
+                </div>
+                <span class="social-id">
+                    Whatsapp
+                </span>
+            </div>
+            <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-messenger pointer-cursor" (click)="socialShare('Messenger')">
+                    <img src="assets/images/social_shareicons/messenger.png">
+                </div>
+                <span class="social-id">
+                    Messenger
+                </span>
+            </div>
+            <!-- <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-reddit">
+                    <img src="assets/images/social_shareicons/reddit.png">
+                </div>
+                <span class="social-id">
+                    Reddit
+                </span>
+            </div>
+            <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-discord">
+                    <img src="assets/images/social_shareicons/discord.png">
+                </div>
+                <span class="social-id">
+                    Discord
+                </span> -->
+        </div>
+    </div>
+
+    <!-- <div class="row no-gutters options-row"> -->
+
+    <!-- <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-telegram">
+                    <img src="assets/images/social_shareicons/telegram.png">
+                </div>
+                <span class="social-id">
+                    Telegram
+                </span>
+            </div>
+            <div class="col-3 column-flex center-a">
+                <div class="icon-div d-flex center-a bgc-wechat">
+                    <img src="assets/images/social_shareicons/wechat.png">
+                </div>
+                <span class="social-id">
+                    WeChat
+                </span> -->
+    <!-- </div> -->
+
+    <div class="max-w standard-padding">
+        <div class="max-w mt-4">
+            <span class="links-mention">Page Link</span>
+        </div>
+        <div class="row no-gutters link-div">
+            <div class="col-10 d-flex center-a">
+                <span class="link-address">
+                    {{url}}
+                </span>
+            </div>
+            <div class="col-2 d-flex center-a" popover="Copied" placement="bottom" [outsideClick]="true"
+                containerClass="customtooltip">
+                <img style="cursor: pointer;" class="copy-icon" src="assets/images/social_shareicons/copy.png"
+                    [cdkCopyToClipboard]="url">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="row">
+  <ng-container *ngFor="let i of skLoaderCount | fill">
+    <div [ngClass]="customClass" class="desktop col-3">
+      <div class="fb-item">
+        <div class="row no-gutters">
+          <div class="first-section-wrapper">
+            <div class="gravatar">
+              <ngx-skeleton-loader [theme]="{ width: '60px', height: '60px' }" appearance="circle"> </ngx-skeleton-loader>
+            </div>
+            <div class="gravatar-title">
+              <div>
+                <ngx-skeleton-loader count="2" [theme]="{
+                          width: '120px',
+                          'border-radius': '0',
+                          height: '15px',
+                          'margin-bottom': '10px'
+                        }"></ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="row no-gutters">
+        <div class="col-12 second-section-wrapper-div">
+          <div class="second-section-wrapper">
+            <div class="wrapper">
+              <ngx-skeleton-loader count="3" [theme]="{
+                        width: '100%',
+                        'border-radius': '0',
+                        height: '15px',
+                        'margin-bottom': '10px'
+                      }"></ngx-skeleton-loader>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="mobile col-6">
+      <div>
+      <div class="fb-item">
+        <div class="row no-gutters">
+          <div class="first-section-wrapper">
+            <div class="gravatar">
+              <ngx-skeleton-loader [theme]="{ width: '60px', height: '60px' }" appearance="circle"> </ngx-skeleton-loader>
+            </div>
+            <div class="gravatar-title">
+              <div>
+                <ngx-skeleton-loader count="2" [theme]="{
+                          width: '100%',
+                          'border-radius': '0',
+                          height: '15px',
+                          'margin-bottom': '10px'
+                        }"></ngx-skeleton-loader>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="row no-gutters">
+        <div class="col-12 second-section-wrapper-div">
+          <div class="second-section-wrapper">
+            <div class="wrapper">
+              <ngx-skeleton-loader count="3" [theme]="{
+                        width: '100%',
+                        'border-radius': '0',
+                        height: '15px',
+                        'margin-bottom': '10px'
+                      }"></ngx-skeleton-loader>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+  </ng-container>
+</div>

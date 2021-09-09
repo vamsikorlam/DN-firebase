@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25.91" height="27.82" viewBox="0 0 25.91 27.82">
+  <g id="Group_2166" data-name="Group 2166" transform="translate(-1150.09 -35)">
+    <g id="Group_1978" data-name="Group 1978" transform="translate(1150.09 37)">
+      <path id="Path_10600" data-name="Path 10600" d="M772.488,291.494v-.925l2.724-2.724v-7.619a8.513,8.513,0,0,1,6.573-8.305l.238-.057v-1.174a1.734,1.734,0,0,1,3.467,0v1.174l.239.057a8.532,8.532,0,0,1,6.572,8.307v7.618l2.724,2.724v.925Zm11.269-17.707a6.445,6.445,0,0,0-6.438,6.438v9.164H790.2v-9.164a6.448,6.448,0,0,0-6.437-6.438Z" transform="translate(-772.488 -268.956)" fill="#fff"/>
+      <path id="Path_10601" data-name="Path 10601" d="M782.049,290.212a2.419,2.419,0,0,1-2.395-2.105h4.79A2.419,2.419,0,0,1,782.049,290.212Z" transform="translate(-770.78 -264.392)" fill="#fff"/>
+    </g>
+    <circle id="Ellipse_68" data-name="Ellipse 68" cx="7.5" cy="7.5" r="7.5" transform="translate(1161 35)" fill="red"/>
+    <text id="_1" data-name="1" transform="translate(1165 47)" fill="#fff" font-size="12" font-family="ArialMT, Arial" letter-spacing="0.05em"><tspan x="0" y="0">1</tspan></text>
+  </g>
+</svg>

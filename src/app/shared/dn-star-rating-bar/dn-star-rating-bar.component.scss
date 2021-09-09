@@ -1,0 +1,11 @@
+button{
+  height: 20px;
+  width: 25px;
+  line-height: 20px;
+}
+button:focus {
+  outline: 0;
+}
+::ng-deep .mat-icon-button {
+  color: #FFCF38;
+}

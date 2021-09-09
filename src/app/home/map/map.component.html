@@ -1,0 +1,166 @@
+<div style="display: block;">
+    <div class="md-12 map">
+        <agm-map [fullscreenControl]="true" [mapTypeControl]="true" [latitude]="latitude" [longitude]="longitude"
+            [zoom]="zoom" [disableDefaultUI]="true">
+            <agm-marker *ngFor="let marker of products" [latitude]="marker.lat" [longitude]="marker.lng"
+                (markerClick)="selectMarker(marker.id, infoWindow)">
+                <agm-info-window [isOpen]="isInfoWindowOpen(marker.id)" #infoWindow>{{ marker.name }}</agm-info-window>
+            </agm-marker>
+            <agm-circle [latitude]="latitude" [longitude]="longitude" [radius]="radius" [fillColor]="'#78884A'"
+                [circleDraggable]="false" [editable]="false">
+            </agm-circle>
+        </agm-map>
+
+    </div>
+    <div class="md-12 d-none d-md-block contentDiv">
+        <div class="container" id="custom-container">
+            <app-community-card-skeleton class='skeleton-width' *ngIf="isLoading" [skLoaderCount]='4'>
+            </app-community-card-skeleton>
+            <div *ngIf="!isLoading && products.length==0" class="productnotfound">
+                No Items Found
+            </div>
+            <ngx-slick-carousel class="mapcurosel row  no-gutters container_p50" #slickModal="slick-carousel"
+                [config]="slideConfig" (init)="slickInit($event)" (breakpoint)="breakpoint($event)"
+                (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)" *ngIf="!isLoading">
+                <div ngxSlickItem *ngFor="let product of products; index as i" class="slide col-md-4 col-lg-2">
+                    <div class="cardshadow" style="width: 100%;">
+                        <mat-card class="p-0 example-card" (click)="openProductDetailsPage(product.id)"
+                            [ngClass]="{'matcard_green': product.type == 1, 'matcard_blue': product.type == 2 }">
+                            <img class="img-fluid m-0 "
+                                [ngClass]="{'img-fluid-ln-green': product.type == 1, 'img-fluid-ln-blue': product.type == 2 }"
+                                style="height: 8rem; border-radius: 8px 8px 0px 0px;object-fit: cover;" mat-card-image
+                                src={{product.uri}} alt="img">
+                            <mat-card-content>
+                                <div class="rowpt ml-1" style="height: 109px;">
+                                    <div class="row pt-2">
+                                        <div class="col-md-12">
+                                            <mat-card-title class="hdr1_ln title_mb0">
+                                                {{ (product.name.length>20)? (product.name |
+                                                slice:0:20)+'...':(product.name) }}
+                                            </mat-card-title>
+                                            <mat-card-title class=" hdr1_sub2_lft add_br">{{product.location}}
+                                            </mat-card-title>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text_al">
+                                            <mat-card-subtitle class="matcard_mb0"
+                                                [ngClass]="{'hdr1_price_green': product.type == 1, 'hdr1_price_blue': product.type == 2 }">
+                                                {{product.price|currency:"$"}}
+                                            </mat-card-subtitle>
+                                        </div>
+                                    </div>
+                                    <div class="row rowpt5">
+                                        <div class="col-md-5 textalignr">
+                                            <div class="map_username">{{product.seller.username}}</div>
+                                        </div>
+                                        <div class="col-md-7 textalignr">
+                                            <div class="hdr1_small">{{product.time_text}}
+                                            </div>
+                                            <div class="likes_map"><span class="material-icons likesyb">
+                                                    thumb_up_off_alt
+                                                </span><span class="align-top">{{product.likes_count}}</span> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
+                </div>
+            </ngx-slick-carousel>
+        </div>
+    </div>
+
+
+</div>
+<div class="d-block d-md-none">
+    <!-- scroll div -->
+    <div style="width: 100%;
+   
+    position: absolute;
+    z-index: 10;
+    white-space: nowrap;
+    overflow-x: auto;
+    bottom: -11%;">
+        <!-- card div -->
+
+        <ngx-slick-carousel #slickModal="slick-carousel" [config]="slideConfig2" (init)="slickInit($event)"
+            (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+            <div ngxSlickItem *ngFor="let product of products; index as i" class="slide">
+
+                <div class="mobilecard mr-2" (click)="openProductDetailsPage(product.id)">
+                    <div class="d-flex" style="width: 100%; background-color: white;">
+                        <div style="width: 30%;" class="cardimage"
+                            [ngClass]="{'cardimageborder1':product.type==1,'cardimageborder2':product.type==2}"
+                            [style.background-image]="'url('+product.uri+')'">
+
+                        </div>
+                        <div style="width:70%;" class="cardcontent"
+                            [ngClass]="{'card1contentcolor':product.type==1, 'card2contentcolor':product.type==2}">
+                            <div class="contenttop">
+                                <div style="font-weight: bold;">
+                                    {{ (product.name.length>20)? (product.name |
+                                    slice:0:20)+'...':(product.name) }}
+                                </div>
+                                <small>{{product.location}}</small>
+                            </div>
+                            <div class="contentbottom d-flex justify-content-between align-items-end">
+                                <div class="contentbottomleftpart">
+                                    <div style="font-weight: bold;">{{product.price|currency:"$"}}</div>
+                                    <small>{{product.seller.username}}</small>
+                                </div>
+                                <div class="contentbottomrightpart" style="display: flex; font-size: 10px;">
+                                    <div>{{product.time_text}}</div>
+                                    <div class="ml-1"><span class="material-icons likesyb">
+                                            thumb_up_off_alt
+                                        </span><span class="align-top">{{product.likes_count}}</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ngx-slick-carousel>
+
+        <!-- <div *ngFor="let product of products; index as i"
+            style="display: inline-block; width: 240px; height: 90px; background-color: transparent; margin-left:8px;">
+            <div class="mobilecard">
+                <div class="d-flex" style="width: 100%; background-color: white;">
+                    <div style="width: 30%;" class="cardimage"
+                        [ngClass]="{'cardimageborder1':product.type==1,'cardimageborder2':product.type==2}"
+                        [style.background-image]="'url('+product.uri+')'">
+
+                    </div>
+                    <div style="width:70%;" class="cardcontent"
+                        [ngClass]="{'card1contentcolor':product.type==1, 'card2contentcolor':product.type==2}">
+                        <div class="contenttop">
+                            <div style="font-weight: bold;">
+                                {{ (product.name.length>20)? (product.name |
+                                slice:0:20)+'...':(product.name) }}
+                            </div>
+                            <small>{{product.location}}</small>
+                        </div>
+                        <div class="contentbottom d-flex justify-content-between align-items-end">
+                            <div class="contentbottomleftpart">
+                                <div style="font-weight: bold;">{{product.price|currency:"$"}}</div>
+                                <small>{{product.seller.username}}</small>
+                            </div>
+                            <div class="contentbottomrightpart" style="display: flex; font-size: 10px;">
+                                <div>{{product.time_text}}</div>
+                                <div class="ml-1"><span class="material-icons likesyb">
+                                        thumb_up_off_alt
+                                    </span><span class="align-top">{{product.likes_count}}</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div *ngIf="!isLoading && products.length==0" class="productnotfoundmobile">
+            No Items found
+        </div>
+
+    </div>
+</div>

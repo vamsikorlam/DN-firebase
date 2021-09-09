@@ -1,0 +1,166 @@
+<div class="container" id="custom-container">
+  <div class="col-12" style="padding-left: 0">
+    <div class="controls-042 row no-gutters">
+      <div class="col-12 col-md-6 d-flex right-a">
+        <div class="share-option">
+          <i class="fa fa-home pointer-cursor" aria-hidden="true" style="color: #356083"
+            [routerLink]="['/community']"><span style="padding-left: 20px">Community</span></i>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 d-flex left-042">
+        <div class="left-division">
+          <button type="button" [ngClass]="filter.type !== 'recommend' ? 'button-highlight': 'button-minimal'"
+            (click)="communityTypeChange('')">MY COMMUNITY</button>
+          <button type="button" [ngClass]="filter.type === 'recommend' ? 'button-highlight': 'button-minimal'"
+            (click)="communityTypeChange('recommend')">RECOMMENDED</button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+  </div>
+  <div class="row">
+    <div class="col-md-3 mt-xl-3" style="border-right: solid 3px #ddd">
+      <h4 class="hdr3_p" *ngIf="filter.type === 'recommend'">Location</h4>
+      <div class="flex-row flex-nowrap searhiconouterclass" *ngIf="filter.type === 'recommend'">
+        <div class="searchicon">
+          <img src="assets/images/community_images/magnify.svg" alt="searchIcon">
+
+        </div>
+        <input type="text" autocomplete="off" ngx-google-places-autocomplete
+          (onAddressChange)="handleAddressChange($event)" placeholder="Search Location"
+          class="searchCommunity form-control dropdown-toggle productSearch productS" id="menu2" name="productsearch"
+          [(ngModel)]="searchLocation" />
+      </div>
+      <!--<div class="row no-gutters mb-2 mt-3">
+        <div class="col-md-6 mb-2 category-names" *ngFor="let mile of miles" (click)="milesButtonClicked(mile)">
+          <button type="button" class="btn btn-secondary M_btnbg"
+            [ngClass]="{ 'active-mile': filter.milesSelected == mile }">
+            {{ mile }} Miles
+          </button>
+        </div>
+      </div>-->
+      <div class="row no-gutters mb-2 mt-3 hdr3_p">
+        <div>Sort By</div>
+      </div>
+      <div class="row mb-2 mt-3">
+        <mat-radio-group class="mb-1" [(ngModel)]="filter.orderdir">
+          <mat-radio-button class="col-md-12" [value]="'desc'" [disableRipple]="true" (click)="sortOrderChanged('desc')"
+            [checked]="filter.orderdir === 'desc'">
+            Most Recent
+          </mat-radio-button>
+          <mat-radio-button class="col-md-12" [value]="'asc'" [disableRipple]="true" (click)="sortOrderChanged('asc')"
+            [checked]="filter.orderdir === 'asc'">
+            Oldest
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <!--<div class="hdr3_p">Communities</div>
+      <div class="row mb-2 mt-3">
+        <mat-radio-group class="mb-1" [(ngModel)]="filter.communityType">
+          <mat-radio-button class="col-md-12" [value]="'MY_COMMUNITY'" [disableRipple]="true"
+            [checked]="filter.communityType === 'MY_COMMUNITY'" (click)="communityTypeChanged('MY_COMMUNITY')">My
+            Communities</mat-radio-button>
+          <br />
+          <mat-radio-button class="col-md-12" [value]="'SUGGESTED_COMMUNITY'" [disableRipple]="true"
+            [checked]="filter.communityType === 'SUGGESTED_COMMUNITY'"
+            (click)="communityTypeChanged('SUGGESTED_COMMUNITY')">Suggested Communities</mat-radio-button>
+        </mat-radio-group>
+      </div>-->
+      <div class="hdr1_cl text-black">Click 'Apply Filter' to get your desired search results</div>
+      <button type="button" class="btn btn-block viewall text-white" (click)="applyFilter()">Apply Filter</button>
+      <button type="button" class="btn btn-block d-flex justify-content-center" (click)="resetFilter()">
+        <img src="assets/images/community_images/reset.svg">
+        <div class="hdrres align-top">Reset Filer</div>
+      </button>
+    </div>
+    <div class="col-md-9 results-presentation">
+      <div class="row productsinsmallscreen" *ngIf="communitiesLoaded && communities?.length > 0">
+        <div class="hdr1_sub2 pdt25 text-black" style="float: left">{{ totalProducts }} Results Found</div>
+      </div>
+      <div class="row" *ngIf="filter.search">
+        <div>
+          <div class="hdr6">Results for {{ filter.search }}</div>
+        </div>
+      </div>
+      <div class="row" *ngIf="communitiesLoaded && communities?.length > 0">
+        <div class="col-md-7 pl_0">
+          <div class="hdr_res">
+            Showing {{ (filter.pageNo - 1) * itemsLength + 1 }} -
+            {{ (filter.pageNo - 1) * itemsLength + communities?.length }} of {{ totalProducts }} results
+          </div>
+        </div>
+      </div>
+      <div class="row container_pt0" [ngClass]="{'no-gutters':isMobile}">
+        <app-community-card-skeleton class="skeleton-width" [skLoaderCount]="6" [customClass]="'col-md-4'"
+          *ngIf="!communitiesLoaded"></app-community-card-skeleton>
+        <ng-container>
+          <div *ngFor="
+              let community of communities
+                | paginate
+                  : {
+                      id: 'communitiesPaginator',
+                      itemsPerPage: itemsLength,
+                      currentPage: filter.pageNo,
+                      totalItems: totalProducts
+                    };
+              index as i
+            " class="col-6 col-lg-4 card-col">
+            <div class="community-card-enclosure" style="cursor: pointer"
+              (click)="openCommunityDetailsPage(community.id, community)">
+              <div class="card card-background" [style.background-image]="
+                  'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url(' + community.cover + ')'
+                ">
+                <div class="card-top">
+                  <img class="community-img-fluid" [src]="community.avatar" alt="notfound" />
+                  <div class="card-name ml-2">
+                    <span class="headerfontcolor pb-1">{{ community.group_name | stringLength:'28' }}</span>
+                    <small class="time-stamp">Created {{ community.time_text }}</small>
+                  </div>
+                </div>
+
+                <div *ngIf="community.is_group_member; else recommended" class="card-bottom">
+                  <div class="members-avatars">
+                    <img *ngFor="let image of community.members | slice: 0:3; let i = index"
+                      class="community-img-fluid members-avatars-overlap" [style.left]="i * 15 + 'px'"
+                      src="{{ image.avatar }}" alt="notfd" />
+                    <div *ngIf="community.members.length > 4" class="members-avatar-count">
+                      + {{ community.members.length - 4 }}
+                    </div>
+                  </div>
+                  <div class="card-bottom-icons">
+                    <img class="ml_top" src="assets/images/community_images/posts.svg" />
+                    <span class="ml-left-small align-top">{{ community.post_count }}</span>
+                    <img class="ml_top" src="assets/images/community_images/chat.svg" />
+                    <span class="ml-left-small align-top">{{ community.chat_count }}</span>
+                  </div>
+                </div>
+                <ng-template #recommended>
+                  <div class="recommend-bottom-flex">
+                    <div class="recommend-bottom">
+                      <span class="service-type">{{community.typeName}}</span>
+                      <span class="member-count">{{community.member_count}} members</span>
+                      <div class="maximum-width center-align">
+                        <button type="button" class="join-button" (click)="openDialogComingSoon()">JOIN</button>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="communitiesLoaded && communities?.length == 0">
+            <span class="no-product-data-text">No results matched your search :(</span>
+          </ng-container>
+        </ng-container>
+      </div>
+      <hr />
+      <pagination-controls (pageChange)="onPageChanged($event)" id="communitiesPaginator"
+        *ngIf="communitiesLoaded && communities?.length > 0" class="mt-1 text-center">
+      </pagination-controls>
+      <!--TODO-->
+    </div>
+  </div>
+</div>

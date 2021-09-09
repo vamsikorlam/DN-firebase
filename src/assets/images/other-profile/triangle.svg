@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7.776" height="8.119" viewBox="0 0 7.776 8.119">
+  <g id="Group_2855" data-name="Group 2855" transform="translate(14007.149 -21615.5)">
+    <path id="Icon_material-group" data-name="Icon material-group" d="M5.56,10.98A1.74,1.74,0,1,1,7.3,9.24,1.733,1.733,0,0,1,5.56,10.98Zm0,1.16c.168,0,.36.012.563.029a2.447,2.447,0,0,0-1.143,2v1.45H1.5v-1.45C1.5,12.818,4.208,12.14,5.56,12.14Z" transform="translate(-14008.649 21608)" fill="#356083"/>
+    <path id="Icon_material-wifi-lock" data-name="Icon material-wifi-lock" d="M27.935,19.624v-.609a1.015,1.015,0,0,0-2.029,0v.609a.407.407,0,0,0-.406.406v1.624a.407.407,0,0,0,.406.406h2.029a.407.407,0,0,0,.406-.406V20.029A.407.407,0,0,0,27.935,19.624Zm-.406,0H26.312v-.609a.609.609,0,0,1,1.218,0Z" transform="translate(-14027.715 21601.561)" fill="#356083"/>
+  </g>
+</svg>

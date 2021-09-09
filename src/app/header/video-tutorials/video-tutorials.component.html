@@ -1,0 +1,28 @@
+<div (mouseover)="onHover()" (mouseout)="onHoverOutside()" style="position: relative;">
+  <div>
+    <button type="button" class="close position-absolute" (click)="Close()">
+      <div aria-hidden="true">
+        <div aria-hidden="true" class="d-flex align-items-center justify-content-center">
+          <img src="assets/images/header_images/close.svg">
+        </div>
+      </div>
+    </button>
+  </div>
+  <div>
+    <button type="button" class="position-absolute playbutton" (click)="onPlay()"
+      [ngClass]="{'playButtonHide':!playButtonAnimation,'playbutton':playButtonAnimation}">
+      <div aria-hidden="true" class="mb-1"><i class="fa fa-play" aria-hidden="true"></i>
+      </div>
+    </button>
+    <button type="button" class="position-absolute pauseButton" (click)="onPause()"
+      [ngClass]="{'pauseButton':displayPauseButton,'pauseButtonHide':!displayPauseButton}">
+      <div aria-hidden="true" class="mb-1"><i class="fa fa-pause" aria-hidden="true"></i>
+      </div>
+    </button>
+  </div>
+  <div>
+    <video #iframe class="videoSize" controls src="assets/images/header_images/videos/DN_Tab_Marketing.mp4"
+      frameborder="0" allowfullscreen>
+    </video>
+  </div>
+</div>

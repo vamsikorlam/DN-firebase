@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30.879" height="30.879" viewBox="0 0 30.879 30.879">
+  <defs>
+    <filter id="Icon_material-chat_bubble_outline" x="0" y="0" width="30.879" height="30.879" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_material-chat_bubble_outline)">
+    <path id="Icon_material-chat_bubble_outline-2" data-name="Icon material-chat_bubble_outline" d="M14.591,3H4.288A1.292,1.292,0,0,0,3,4.288V15.879L5.576,13.3h9.015a1.292,1.292,0,0,0,1.288-1.288V4.288A1.292,1.292,0,0,0,14.591,3Zm0,9.015H5.576L4.288,13.3V4.288h10.3Z" transform="translate(6 3)" fill="#fff"/>
+  </g>
+</svg>

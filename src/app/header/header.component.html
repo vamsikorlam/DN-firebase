@@ -1,0 +1,270 @@
+<!-- Desktop -->
+
+<header class="desktop">
+  <nav class="navbar navbar-expand-lg navbar-dark nav-bg custom-nav">
+    <div class="row no-gutters row-inside-nav">
+      <div class="col-md-2 col-lg-2 col-xl-2 logo nav-item">
+        <a class="nav-link" href="javascript:void(0)" [routerLink]="['/']" (click)="logoClicked()">
+          <img src="assets/images/logo.png" class="img-fluid" alt="Logo" />
+        </a>
+      </div>
+      <div class="col-md-5 col-lg-5 col-xl-5 search-results nav-item pt-3">
+        <app-header-search [ngClass]="{ 'd-none': showHideCommunitySearch }"> </app-header-search>
+
+        <div class="input-group" [ngClass]="{ 'd-none': !showHideCommunitySearch }">
+          <input type="text" class="form-control mobile-product-search" placeholder="Search for Community"
+            [(ngModel)]="communitySearchTerm" (keyup.enter)="onCommunitySearchChange($event.target.value)" />
+          <div class="input-group-append">
+            <button class="btn search-icon" type="button" (click)="onCommunitySearchChange(searchWord)">
+              <img src="assets/images/search.svg" width="19" height="19" alt="search" />
+            </button>
+          </div>
+        </div>
+
+        <!-- <ng-template #showCommunity> -->
+
+        <!-- <app-community-search></app-community-search> -->
+        <!-- </ng-template> -->
+      </div>
+      <div class="col-md-1 col-lg-1 col-xl-1 ml-2 pl-2 nav-item pt-4 video-desktop" *ngIf="!user">
+        <a class="video-tutorials cursor-pointer" (click)="openVideo()">
+          <img src="assets/images/video.svg" class="pr-1" alt="Video Tutorials" />
+          <span class="video-tutorials-text">VIDEO TUTORIALS</span>
+        </a>
+      </div>
+
+      <div class="col-md-1 col-lg-1 col-xl-1 ml-2 pl-2 nav-item pt-2 video-tablet" *ngIf="!user">
+        <a class="video-tutorials cursor-pointer" (click)="openVideo()" data-toggle="modal"
+          data-target="#exampleModalCenter">
+          <img src="assets/images/video.svg" class="pr-1" alt="Video Tutorials" />
+          <!-- <span class="video-tutorials-text">VIDEO TUTORIALS</span> -->
+        </a>
+      </div>
+
+      <div class="col-md-1 col-lg-1 col-xl-1 pl-2 nav-item pt-4 icons-group" *ngIf="user">
+        <span class="single-icons">
+          <a (click)="getCurrentLocation()" style="cursor: pointer">
+            <img src="assets/images/header_images/map.svg" class="img-login" alt="map" width="22" height="22" />
+          </a>
+        </span>
+        <span class="single-icons">
+          <a class="cursor-pointer" (click)="openDialogComingsoon()">
+            <img src="assets/images/header_images/inbox.svg" class="img-login" alt="inbox" width="22" height="22" />
+          </a>
+        </span>
+        <!-- <span class="single-icons notification-icon">
+                    <img src="assets/images/header_images/notification_bell.svg" class="img-login" alt="notification"
+                        width="22" height="22">
+                </span> -->
+        <span class="vertical-line"></span>
+      </div>
+
+      <div class="col-md-auto col-lg-auto col-xl-auto nav-item pt-3 login" *ngIf="!user">
+        <button type="button" class="btn btn-login-width mr-2" (click)="openModal()">
+          <span>
+            <img src="assets/images/login.svg" class="img-login" alt="login" width="13.49" />
+          </span>
+          <span class="label-login">LOGIN</span>
+        </button>
+      </div>
+
+      <div class="col-md-auto col-lg-auto col-xl-auto nav-item mt-3 mr-2 btn-sell headerp">
+        <!-- <button
+                    type="button"
+                    class="btn btn-sell-width"
+                    [outsideClick]="true"
+                    [popover]="popTemplate"
+                    placement="bottom"
+                    [adaptivePosition]="false">
+                        <span>
+                            <img src='assets/images/sell.svg' class="img-sell" alt="sell" width="13.49">
+                        </span>
+                        <span class="label-sell">SELL</span>
+                </button> -->
+        <button type="button" class="btn btn-sell-width" (click)="openDialogComingsoon()">
+          <span>
+            <img src="assets/images/sell.svg" class="img-sell" alt="sell" width="13.49" />
+          </span>
+          <span class="label-sell">SELL</span>
+        </button>
+      </div>
+      <div *ngIf="user" class="col-md-auto col-lg-auto col-xl-auto nav-item pt-3 profilep profile-image-section">
+        <span (click)="$event.stopPropagation()" triggers="" [isOpen]="isOpen" (click)="openwebProfilepopover()"
+          [popover]="popProfile" placement="bottom" [adaptivePosition]="false">
+          <img [src]="getUserProfile()" class="img-fluid mr-2 ml-2 cursor-pointer" width="40" height="40"
+            alt="profile-image" style="border-radius: 20px" />
+          <i class="fa fa-caret-down mr-4 profile-image-caret-down cursor-pointer"></i>
+        </span>
+        <!-- <button (click)="isOpen=!isOpen">toggel</button> -->
+        <ng-template #popProfile>
+          <app-header-profile-popover (click)="$event.stopPropagation(); isOpen?isOpen=false:isOpen=true">
+          </app-header-profile-popover>
+          <!-- triggers="" (click)="isOpen=!isOpen" [isOpen]="isOpen" -->
+        </ng-template>
+      </div>
+
+      <div class="col-md-1 col-lg-1 col-xl-1 nav-item menu pt-3 ml-auto">
+        <a class="navbar-brand float-right cursor-pointer" (click)="toggleRightSidenav()">
+          <img src="assets/images/toggle.svg" class="float-right" alt="menu" />
+          <span class="menu-text">menu</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<!-- <ng-template #popTemplate>
+    <app-header-sell-popover></app-header-sell-popover>
+</ng-template> -->
+
+<!-- Tablet -->
+
+<!-- <header class="tablet">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="row no-gutters row-width">
+          <div class="col-md-1">
+              <a class="navbar-brand float-left" href="#" (click)="toggleRightSidenav()">
+                  <img src="../assets/images/menu-mobile.svg" class="float-left" alt="menu" width="24">
+              </a>
+          </div>
+          <div class="col-md-2">
+              <a class="nav-link logo-link" href="#">
+                  <img src="../assets/images/logo-mobile.png" class="img-fluid" alt="Logo" width="101">
+              </a>
+          </div>
+          <div class="col-md-6">
+              <div class="input-group">
+                  <input type="text" class="form-control mobile-product-search" placeholder="What Are You Looking For?">
+                  <div class="input-group-append">
+                      <button class="btn search-icon" type="button">
+                        <img
+                        src="../assets/images/search.svg"
+                        width="19"
+                        height="19"
+                        alt="search">
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-1 ml-auto pl-3">
+            <a class="" href="#">
+                <img
+                    src="../assets/images/location-mobile.svg"
+                    class="location-mobile-img"
+                    width="35"
+                    height="35"
+                    alt="location">
+            </a>
+          </div>
+          <div class="col-md-1 mobile-map-search">
+              <a class="" href="#">
+                <img
+                src="../assets/images/map search.svg"
+                class="location-mobile-img"
+                width="35"
+                height="35"
+                alt="map search">
+              </a>
+          </div>
+      </div>
+  </nav>
+</header> -->
+
+<!-- Mobile -->
+
+<header class="mobile">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="row no-gutters row-width pb-3">
+      <div class="col-auto col-sm-auto col-md-auto">
+        <a class="navbar-brand float-left" (click)="toggleRightSidenav()">
+          <img src="assets/images/menu-mobile.svg" class="float-left" alt="menu" width="24" />
+        </a>
+      </div>
+      <div class="col-auto col-sm-auto col-md-auto">
+        <a class="nav-link logo-link" href="javascript:void(0)" [routerLink]="['/']" (click)="logoClicked()">
+          <img src="assets/images/logo-mobile.png" class="img-fluid" alt="Logo" width="101" />
+        </a>
+      </div>
+      <div class="col-1 col-sm-1 ml-auto col-md-auto d-flex d-flex align-items-center message-mobile">
+        <a class="cursor-pointer" (click)="openDialogComingsoon()">
+          <img src="assets/images/message-mobile.svg" width="25" height="25" alt="message" />
+        </a>
+      </div>
+      <div class="d-none col-1 col-sm-1 col-md-auto d-flex d-flex align-items-center notification-mobile">
+        <a class="" href="#">
+          <img src="assets/images/notification-mobile.svg" width="25" height="25" alt="notification" />
+        </a>
+      </div>
+      <div class="col-1 col-sm-1 col-md-auto d-flex d-flex align-items-center profile-pic">
+        <a class="cursor-pointer" (click)="openProfilepopover()">
+          <img [src]="getUserProfile()" width="35" style="border-radius: 15.25px" height="35" alt="profile pic" />
+        </a>
+      </div>
+    </div>
+
+    <div [ngClass]="{ 'd-none': showHideCommunitySearch }" class="row no-gutters row-width">
+      <div class="col-9 col-sm-9 col-md-6">
+        <div class="input-group">
+          <input type="text" class="form-control mobile-product-search" placeholder="What Are You Looking For?"
+            [ngModel]="searchWord" (keyup.enter)="onSearchChange($event.target.value)" />
+          <div class="input-group-append">
+            <button class="btn search-icon" type="button">
+              <img src="assets/images/search.svg" width="19" height="19" alt="search" />
+            </button>
+          </div>
+        </div>
+        <div class="input-group" [ngClass]="{ 'd-none': !showHideCommunitySearch }">
+          <input type="text" class="form-control mobile-product-search" placeholder="Search for Community"
+            [(ngModel)]="communitySearchTerm" (keyup.enter)="onCommunitySearchChange($event.target.value)" />
+          <div class="input-group-append">
+            <button class="btn search-icon" type="button">
+              <img src="assets/images/search.svg" width="19" height="19" alt="search" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-1 col-sm-1 col-md-auto d-flex d-flex align-items-center ml-auto pl-3"
+        style="position: relative; z-index: 10">
+        <a (click)="openHeaderSearch()">
+          <img src="assets/images/location-mobile.svg" class="location-mobile-img" width="35" height="35"
+            alt="location" />
+        </a>
+      </div>
+      <div *ngIf="mobileMapViewClicked" class="col-2 col-sm-2 col-md-auto d-flex align-items-center mobile-map-search">
+        <a (click)="navigateToLandingPage()">
+          <img src="assets/images/list-view.svg" class="location-mobile-img" width="35" height="35" alt="list view" />
+        </a>
+      </div>
+      <div *ngIf="!mobileMapViewClicked" class="col-2 col-sm-2 col-md-auto d-flex align-items-center mobile-map-search">
+        <a (click)="getCurrentLocation()">
+          <img src="assets/images/map%20search.svg" class="location-mobile-img" width="35" height="35"
+            alt="map search" />
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<ng-container *ngIf="openHeader && isMobile">
+  <app-header-search (closeHeaderSearch)="closeCurrentLocation()"></app-header-search>
+</ng-container>
+
+<ng-container *ngIf="openProfile && isMobile">
+  <app-header-profile-popover (closeProfiletab)="closeProfiletab()"></app-header-profile-popover>
+</ng-container>
+
+<app-side-nav></app-side-nav>
+<app-login></app-login>
+<!-- <app-video-tutorials></app-video-tutorials> -->
+<!-- <div class="btn-group" dropdown>
+    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic">
+        Button dropdown <span class="caret"></span>
+    </button>
+    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+        </li>
+    </ul>
+</div> -->

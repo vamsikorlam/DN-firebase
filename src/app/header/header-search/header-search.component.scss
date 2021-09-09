@@ -1,0 +1,353 @@
+.input-group.inputsGroup {
+  flex-wrap: nowrap;
+}
+.input-group > .dropdown.productsDropdown {
+  width: 65%;
+}
+.dropdown input:focus {
+  outline: none;
+}
+
+.dropdownhide {
+  display: none;
+}
+.locationInput {
+  position: relative;
+}
+
+.dropdownForLocation {
+  position: absolute;
+}
+
+//customizing auto complete dropdown
+
+::ng-deep .pac-item {
+  padding: 15px;
+  font-size: 14px;
+  font-family: 'Roboto';
+}
+::ng-deep .pac-icon {
+  background-image: url('../../../assets/images/map-marker.svg') !important;
+  background-size: 12px;
+}
+::ng-deep .pac-icon-marker {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+// ::ng-deep .pac-icon
+// {
+
+//   background-image: url('assets/images/header_images/map.svg');
+
+// }
+
+.productSearch {
+  border-radius: 1.9375rem 0rem 0rem 1.9375rem;
+  border-right: 0;
+  border-right: 1px solid darkgrey;
+}
+#seeAll {
+  float: right;
+  margin: 0;
+  margin-bottom: 0.3125rem;
+}
+.currentLocation {
+  font-weight: bold;
+  font-size: 0.9rem;
+  line-height: 1.1875rem;
+  font-family: Roboto;
+  color: #869658;
+  padding-left: 1px;
+}
+.currentLocationIcon {
+  padding-right: 10px;
+}
+.currentLocationElements {
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.currentLocationName {
+  font-size: 0.8rem;
+  font-weight: normal;
+  line-height: 1.0625rem;
+  font-family: Roboto;
+  color: #212529;
+  padding-top: 0;
+  margin: 0;
+}
+.recentLocationsHeading {
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  font-family: Roboto;
+  color: #b0b5b9;
+  padding-bottom: 12px;
+  padding-left: 10px;
+}
+.recentLocations {
+  padding-left: 0.9375rem;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+  font-family: Roboto;
+  display: inline-block;
+  margin-bottom: 0;
+}
+.popularLocationsIcon {
+  /* padding-left: 20px; */
+  padding-left: 6px;
+}
+.popularLocations {
+  padding-left: 0.9375rem;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+  font-family: Roboto;
+  padding-bottom: 0.9375rem;
+  padding-top: 0.9375rem;
+  display: inline-block;
+  margin-bottom: 0;
+}
+.popularLocationHeading {
+  padding-left: 10px;
+  color: #b0b5b9;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  font-family: Roboto;
+  padding-bottom: 1.25rem;
+}
+
+.searchBar {
+  border-radius: 3rem 0 0 3rem;
+  border-right: 0;
+}
+.searchBarDropDown {
+  max-width: 100%;
+  width: 22.6875rem;
+  height: 17.3125rem;
+  text-align: left;
+  border-bottom-right-radius: 3%;
+  border-bottom-left-radius: 3%;
+}
+.productSearchItems {
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.0625rem;
+  font-family: Roboto;
+  letter-spacing: 0.0175rem;
+  color: #7e7e7e;
+  opacity: 1;
+  margin-bottom: 0.6875rem;
+  padding: 0;
+  padding-top: 0.5rem;
+}
+.seeAllElement {
+  text-align: left;
+  font-weight: bold;
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  font-family: Roboto;
+  letter-spacing: 0.015rem;
+  color: #929292;
+  text-transform: uppercase;
+  opacity: 1;
+  margin-bottom: 0;
+}
+.hrClass {
+  margin: 0;
+}
+.recentHeadingForDropDown {
+  //padding-top: 0.9375rem;
+  font-size: 1rem;
+  color: #7e7e7e;
+  left: 1.625rem;
+  font-weight: 600;
+  line-height: 1.1875rem;
+  font-family: Roboto, sans-serif;
+  opacity: 1;
+  margin-bottom: 0.375rem;
+}
+.locationSearch {
+  background-color: #ffffff;
+  border-radius: 0;
+  padding-right: 30px;
+  border: 0px;
+}
+.locationDropDownIcon {
+  position: absolute;
+  color: gray;
+  right: 0.8125rem;
+  bottom: 1rem;
+  cursor: pointer;
+  // bottom: 1.1875rem;
+}
+#hrforLocationDropDown {
+  width: 85%;
+  background-color: black;
+}
+.locationsearchDropDown {
+  width: 100%;
+  height: auto;
+  max-height: 27.8125rem;
+  display: block;
+  overflow-y: scroll;
+  padding: 8px;
+  overflow: auto;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.locationsearchDropDown::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.locationDropDownIcon {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.searchButton {
+  background-color: #5c6d2e;
+  border-radius: 0rem 1.875rem 1.875rem 0rem;
+  opacity: 1;
+  color: #ffffff;
+}
+::placeholder {
+  opacity: 1;
+  color: #959595;
+  font-size: 0.875rem;
+  // font-size: 1rem;
+  font-family: Roboto;
+}
+
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  opacity: 1;
+  color: #959595;
+  font-size: 0.875rem;
+  // font-size: 1rem;
+  // line-height: 1.0625rem;
+  font-family: Roboto; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  opacity: 1;
+  color: #959595;
+  font-size: 0.875rem;
+  // font-size: 1rem;
+
+  font-family: Roboto;
+}
+
+.form-control::-ms-input-placeholder {
+  /* Microsoft Edge */
+  opacity: 1;
+  color: #959595;
+  font-size: 0.875rem;
+  // font-size: 1rem;
+
+  font-family: Roboto;
+}
+
+li {
+  cursor: pointer;
+}
+
+.li-fix-bottom {
+  position: absolute;
+  bottom: 5px;
+  width: 86%;
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-right-width: 0;
+  border-left-width: 0;
+  border-bottom: 0;
+  padding: 0.5rem 0.75rem;
+  margin-left: 7%;
+  margin-right: 7%;
+  color: #666666;
+}
+
+.list-group-item.customlist {
+  position: relative;
+  display: block;
+  font-size: 12px;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  color: rgb(149 149 149);
+  border: 0px;
+}
+
+.search-history-li {
+  margin-left: 7%;
+  margin-right: 7%;
+  width: 86%;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+  padding: 0.5rem 0.75rem;
+  color: #666666;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+//mobile Location tab
+.current_locationouterTab
+{
+  position: fixed;
+    bottom: 0px;
+    width: 100%;
+    min-height: 100%;
+    z-index: 100;
+    overflow: auto;
+    background: white;
+
+}
+
+.current_locationouterTab .back
+{
+  cursor: pointer;
+}
+
+.current_locationouterTab .header
+{
+  background-color:#707070;
+  height: 40px;
+  color: white;
+}
+
+.currentLocationtab
+{
+  padding:20px;
+}
+
+.currentLocationtab .labelcolor
+{
+  color: #B0B5B9;
+}
+
+
+.currentLocationtab .LocationSearchOuterdiv
+{
+  position: relative;
+}
+
+.currentLocationtab .LocationSearchOuterdiv>.currentLocation
+{
+  min-height: 70px;
+  border-bottom: 1px solid black;
+}
+
+.currentLocationtab .LocationSearchOuterdiv>.searchicon
+{
+  position: absolute;
+  top:10px;
+  left: 10px;
+}
+@media (min-width: 768px) and (max-width: 1024.98px) {
+  .input-group > .productsDropdown {
+    width: 105% !important;
+  }
+}

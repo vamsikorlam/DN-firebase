@@ -1,0 +1,135 @@
+* {
+  font-family: 'Roboto';
+}
+.drawrerContainer {
+  width: 100%;
+  position: fixed;
+  background-color: transparent;
+}
+.drawerContainer2 {
+  width: 100%;
+  height: 100vh;
+  top: 0px;
+  position: fixed;
+  background-color: transparent;
+  z-index: 30;
+}
+
+.drawer {
+  width: 300px;
+  padding: 20px;
+  height: 100vh;
+  z-index: 100;
+  color: white;
+  border-color: #6e7f40;
+  background-color: #6e7f40;
+  
+}
+.drawerContent {
+  position: relative;
+  z-index: 50;
+}
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  background-color: transparent;
+}
+
+/* Menu styles */
+
+.smenu-logo {
+  padding-bottom: 2rem;
+}
+// .menu-profile-pic {
+//   // padding-right: 0.875rem;
+// }
+.smenu-profile-pic a {
+  color: #fff;
+}
+.smenu-profile-pic a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.smenu-profile-pic {
+  padding-bottom: 2.3125rem;
+}
+.smenu-profile-pic-flex {
+  justify-content: center;
+  align-items: center;
+}
+.smenu-list .menu-list {
+  padding-left: 0;
+}
+.smenu-list .menu-list .sub-list {
+  list-style-type: none;
+}
+.smenu-list .menu-list .sub-list a.sub-list-link {
+  color: #fff;
+}
+.smenu-list .menu-list .sub-list a.sub-list-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+a.close:focus-visible {
+  outline: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.close-icon {
+  vertical-align: -webkit-baseline-middle;
+}
+.custom-padding-top-li {
+  padding-top: 1.75rem;
+}
+.custom-padding-top {
+  padding-top: 1.3125rem;
+}
+::ng-deep .mat-drawer-inner-container {
+  overflow: unset !important;
+}
+// ::-webkit-scrollbar-track {
+//   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+//   background-color: #f5f5f5;
+// }
+
+// ::-webkit-scrollbar {
+//   width: 6px;
+//   background-color: #6e7f40;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background-color: transparent;
+// }
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 3px;
+}
+::-webkit-scrollbar-button {
+  background: #ccc;
+}
+::-webkit-scrollbar-track-piece {
+  background: #888;
+}
+::-webkit-scrollbar-thumb {
+  // background: #eee;
+  background: #abb590;
+}
+
+.userWelcome {
+  margin-left: 5%;
+  margin-top: 3%;
+}
+.welcomeText {
+  display: block;
+  font-size: 16px;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.userFullName {
+  display: block;
+  font-size: 22px;
+  line-height: 24px;
+  color: #ffff;
+  font-weight: 400;
+}

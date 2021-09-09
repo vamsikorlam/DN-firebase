@@ -1,0 +1,551 @@
+<div class="main-container">
+  <app-other-profile-skeleton *ngIf="!userData"></app-other-profile-skeleton>
+  <div class="container-001 d-none d-md-block">
+    <div *ngIf="userData">
+      <div class="profile-data profile-banner">
+        <div class="profile-name">
+          <!-- <span>Shravan Naikini</span> -->
+          <span>{{ userData.name }}</span>
+        </div>
+        <div class="max-w-flex center-a">
+          <div class="profile-rating-grid row justify-content-center">
+            <div class="description-001">
+              <span>
+                <span>{{ userData.username }}</span>
+                <!-- <span>Developer</span> -->
+                <span class="andromeda-row">
+                  <!-- <ngb-rating max="5" rate="4" readonly="false"></ngb-rating> -->
+                  <app-star-rating-bar [dnRating]="userData.rating"></app-star-rating-bar>
+                </span>
+
+              </span>
+            </div>
+            <!-- <div class=" description-001">
+              <span class="ml-2">
+                <img src="assets/images/other-profile/online.svg" />
+                <small>Online</small>
+              </span>
+            </div> -->
+          </div>
+        </div>
+        <div class="max-w-flex center-a">
+          <div class="profile-location-wrap">
+            <span>
+              <i class="fas fa-map-marker-alt"></i>
+              {{ userData.address }}
+            </span>
+          </div>
+        </div>
+        <div class="social-media">
+          <div *ngIf="userData" class="social-media-wrap">
+            <a class="profile-options-cursor " (click)="socialNavigate(userData.facebook)">
+              <div class="icon-wrap facebook">
+                <img src="assets/images/other-profile/facebook.svg" />
+              </div>
+            </a>
+            <a class="profile-options-cursor " (click)="socialNavigate(userData.twitter)">
+              <div class="icon-wrap twitter">
+                <img src="assets/images/other-profile/twitter.svg" />
+              </div>
+            </a>
+            <a class="profile-options-cursor " (click)="socialNavigate(userData.linkedin)">
+              <div class="icon-wrap linkedin">
+                <img src="assets/images/other-profile/LinkedIn.svg" />
+              </div>
+            </a>
+            <a class="profile-options-cursor " (click)="socialNavigate(userData.instagram)">
+              <div class="icon-wrap instagram">
+                <img src="assets/images/other-profile/instagram.svg" />
+              </div>
+            </a>
+            <a class="profile-options-cursor " (click)="socialNavigate(userData.youtube)">
+              <div class="icon-wrap youtube">
+                <img src="assets/images/other-profile/youtube.svg" />
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="userData">
+      <div class="max-w-flex center-a">
+        <div class="profile-photo" [style.background-image]="'url(' + userData.avatar + ')'">
+          <!-- <img src="assets/images/other-profile/check.svg" /> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-flex center-a">
+      <div class="profile-options row no-gutters">
+        <div class="col-3 profile-options-cursor" (click)="openDialogComingsoon()">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/deal.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Meet Now</span>
+          </div>
+        </div>
+        <div class="col-3 profile-options-cursor" (click)="openDialogComingsoon()">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/pay.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Pay</span>
+          </div>
+        </div>
+        <div class="col-3 profile-options-cursor" (click)="openDialogComingsoon()">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/call.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Call</span>
+          </div>
+        </div>
+        <div class="col-3 profile-options-cursor" (click)="openDialogComingsoon()">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/mail.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Chat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-flex center-a">
+      <div class="profile-text">
+        <span>
+          What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has
+          been the industry's standard dummy text ever since the 1500s when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book it ha <a><span class="highlight">Report Spam</span></a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="container-002 d-block d-md-none">
+    <div *ngIf="userData">
+      <div class="max-w-flex center-a">
+        <div class="profile-photo" [style.background-image]="'url(' + userData.avatar + ')'">
+          <!-- <img src="assets/images/other-profile/check.svg" /> -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="userData">
+      <div class="profile-name">
+        <!-- <span>Shravan Naikini</span> -->
+        <span>{{ userData.name }}</span>
+      </div>
+      <div class="max-w-flex center-a">
+        <div class="description-001">
+          <span>
+            <!-- <span>Developer</span> -->
+            <span>{{ userData.username }}</span>
+            <span class="andromeda-row">
+              <app-star-rating-bar [dnRating]="userData.rating"></app-star-rating-bar>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="max-w-flex center-a">
+        <div class="profile-location-wrap">
+          <span>
+            <i class="fas fa-map-marker-alt"></i>
+            {{ userData.address }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-flex center-a">
+      <div class="profile-options row no-gutters">
+        <div class="col-3">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/deal.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Meet Now</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/pay.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Pay</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/call.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Call</span>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="max-w-flex center-a">
+            <div class="icon-container">
+              <img class="options-svg" src="assets/images/other-profile/mail.svg" />
+            </div>
+          </div>
+          <div class="max-w text-c">
+            <span class="option-description">Chat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-flex center-a">
+      <div class="profile-text">
+        <span> What is Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry. </span>
+      </div>
+    </div>
+    <div class="social-media">
+      <div class="social-media-wrap">
+
+
+        <div class="icon-wrap facebook">
+          <img src="assets/images/other-profile/facebook.svg" />
+        </div>
+
+
+        <div class="icon-wrap twitter">
+          <img src="assets/images/other-profile/twitter.svg" />
+        </div>
+
+
+
+        <div class="icon-wrap linkedin">
+          <img src="assets/images/other-profile/LinkedIn.svg" />
+        </div>
+
+
+        <div class="icon-wrap instagram">
+          <img src="assets/images/other-profile/instagram.svg" />
+        </div>
+
+
+        <div class="icon-wrap youtube">
+          <img src="assets/images/other-profile/youtube.svg" />
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-flex center-a">
+    <div class="cards-presentation">
+      <div class="max-w ">
+        <div class="venv mt-3">
+          <div>
+            <div class="panel-controls d-flex justify-content-between align-items-center">
+              <div class="category">
+                <span>Skills</span>
+              </div>
+              <!-- <div class="justify-content-between align-items-center d-none d-md-block">
+                <button (click)="previous(0)" [disabled]="previousAndNextbuttons[0].previousButton"
+                  class="btn scroll-btn">&lt;</button>
+                <button (click)="next(0)" [disabled]="previousAndNextbuttons[0].nextButton"
+                  class="btn scroll-btn ml-2">&gt;</button>
+              </div> -->
+            </div>
+
+            <!-- Skills -->
+            <div #panel1 id="scroll">
+
+              <!-- Skills -->
+
+
+              <ngx-slick-carousel class="otherProfileCurosel curosel" *ngIf="skills.length>0 && !skillsisLoading"
+                [config]="slideConfig" (init)="slickInit($event)" (breakpoint)="breakpoint($event)"
+                (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)" #slickModal1="slick-carousel">
+
+                <div ngxSlickItem *ngFor="let skill of skills">
+                  <div class="skill-card-enclosure ">
+                    <div class="skill-card profile-options-cursor" (click)="openDialogComingsoon()">
+                      <div class="card-content-001">
+                        <div class="d-none d-md-block">
+                          <div class="max-w d-flex">
+                            <div class="col-10 left-a">
+                              <span class="skill-name">Skill Name: {{ skill.skill_name | stringLength:'28'}} </span>
+                            </div>
+                            <div class="col-2">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="d-block d-md-none">
+                          <div class="max-w-flex center-a">
+                            <span class="skill-name">{{skill.skill_name | stringLength:'28'}}</span>
+                          </div>
+                        </div>
+
+                        <div class="max-w d-flex center-a margin-sm">
+                          <span class="skill-miniate-span">MY PRICE IS</span>
+                        </div>
+                        <div class="max-w d-flex center-a">
+                          <div class="dollar-div">
+                            <div class="or-radio">
+                              <span>OR</span>
+                            </div>
+                            <div class="max-w-50 d-flex center-a border-right">
+                              <div class="first-dollar-wrap">
+                                <span class="number-16">${{ skill.fixedprice }}</span>
+                                <span class="miniate-span">FIXED</span>
+                              </div>
+                            </div>
+                            <div class="max-w-50 d-flex center-a column-flex">
+                              <div class="max-w d-flex second-dollar">
+                                <span>${{ skill.minprice }} - ${{ skill.maxprice }}</span>
+                              </div>
+                              <div class="max-w d-flex center-a">
+                                <span class="miniate-span">PER MONTH</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="max-w d-flex center-a margin-sm">
+                          <span class="skill-miniate-span">SKILL LEVEL</span>
+                        </div>
+                        <div class="max-w d-flex center-a">
+                          <div class="icon-wrap-001 d-flex">
+                            <div class="icon-wrap-002 d-flex center-a column-flex">
+                              <img [ngClass]="{'skill-level-highlight': skill.skill_level == 1}"
+                                src="assets/images/other-profile/hobbyist.svg" />
+                              <span>Hobbyist</span>
+                            </div>
+                            <div class="icon-wrap-002 d-flex center-a column-flex">
+                              <img [ngClass]="{'skill-level-highlight': skill.skill_level == 2}"
+                                src="assets/images/other-profile/degree.svg" />
+                              <span>Skilled</span>
+                            </div>
+                            <div class="icon-wrap-002 d-flex center-a column-flex">
+                              <img [ngClass]="{'skill-level-highlight': skill.skill_level == 3}"
+                                src="assets/images/other-profile/expert.svg" />
+                              <span>Expert</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="max-w d-flex center-a mt-1">
+                          <span class="skill-miniate-span">CATEGORY</span>
+                        </div>
+                        <div class="d-flex center-a">
+                          <div class="categories row justify-content-center">
+                            <div *ngFor="let category of skill.skill_associate_tags_array">
+                              <div class="category-specific">
+                                <span>{{ category }}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+              <ng-container>
+              </ng-container>
+
+
+
+
+            </div>
+          </div>
+
+          <ng-container *ngIf="skillsisLoading">
+
+            <app-community-card-skeleton class="skeleton-width" [skLoaderCount]='3'>
+
+            </app-community-card-skeleton>
+
+          </ng-container>
+        </div>
+        <div class="venv mt-3">
+          <div>
+            <div class="panel-controls d-flex justify-content-between align-items-center">
+              <div class="category">
+                <span>Goods</span>
+              </div>
+              <!-- <div class="justify-content-between align-items-center d-none d-md-block">
+                <button (click)="previous(1)" [disabled]="previousAndNextbuttons[1].previousButton"
+                  class="btn scroll-btn">&lt;</button>
+                <button (click)="next(1)" [disabled]="previousAndNextbuttons[1].nextButton"
+                  class="btn scroll-btn ml-2">&gt;</button>
+              </div> -->
+            </div>
+            <div #panel2 id="scroll">
+              <ngx-slick-carousel class="otherProfileCurosel curosel" *ngIf="products.length>0 && !productsisLoading"
+                #slickModal2="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+                (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)">
+                <div ngxSlickItem *ngFor="let product of products">
+                  <div class="goods-card-enclosure profile-options-cursor">
+                    <div class="card-product shadow profile-options-cursor" (click)="productdetailroute(product.id)">
+                      <div class="image-container" [style.background-image]="'url(' + product.uri + ')'">
+                        <div class="max-w d-flex text-end pr-3">
+                          <div class="icons-container">
+                            <div class="icon-div-menu d-none d-md-block">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </div>
+                            <div class="icon-div-likes">
+                              <img src="assets/images/other-profile/like.svg" />
+                              <span>
+                                {{ product.likes_count }}
+                              </span>
+                            </div>
+                            <div class="icon-div-bare d-none d-md-block">
+                              <img class="temporary" src="assets/images/other-profile/privacy.svg" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="product-details-001">
+                        <div class="max-w d-flex col-height-1">
+                          <div class="major-col">
+                            <span class="product-name">{{ product.name | stringLength:'28'}}</span>
+                          </div>
+                          <div class="minor-col text-end">
+                            <span class="product-price">${{ product.price }}</span>
+                          </div>
+                        </div>
+                        <div class="max-w d-flex col-height-1">
+                          <div class="major-col">
+                            <span class="product-address">{{ product.location | stringLength:'28' }}</span>
+                          </div>
+                          <div class="minor-col text-end">
+                            <span class="product-time">{{ product.time_text }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+            </div>
+            <!-- <div>
+              <div class="panel-controls d-flex justify-content-between align-items-center">
+                <div class="category">
+                  <span>Goods</span>
+                </div>
+                <div class="justify-content-between align-items-center d-none d-md-block">
+                  <button (click)="previous(1)" class="btn scroll-btn">&lt;</button>
+                  <button (click)="next(1)" class="btn scroll-btn ml-2">&gt;</button>
+                </div>
+              </div>
+
+              <div class="row" id="scroll">
+
+                <ngx-slick-carousel #slickModal2="slick-carousel" class="carousel container" style="overflow: unset"
+                  #slickModal="slick-carousel" [config]="slideConfig">
+                  <div ngxSlickItem *ngFor="let product of products; index as i">
+                    <div style="width: 95%;">
+                      <app-post [postUri]="product.uri" [postId]="0" [postLikesCount]="product.likes_count"
+                        [postName]="product.name" [postPrice]="product.price" [postLocation]="product.location"
+                        [postTimeText]="product.time_text" [postProductType]="0" [showLockIcon]="false"
+                        [showSettingsIcon]="false">
+                      </app-post>
+                    </div>
+
+
+                  </div>
+                </ngx-slick-carousel>
+              </div>
+            </div> -->
+
+
+
+          </div>
+          <ng-container *ngIf="productsisLoading">
+
+            <app-community-card-skeleton class="skeleton-width" [skLoaderCount]='3'>
+
+            </app-community-card-skeleton>
+
+          </ng-container>
+        </div>
+        <div class="venv mt-3 mb-3">
+          <div>
+
+
+            <div class="panel-controls d-flex justify-content-between align-items-center">
+              <div class="category">
+                <span>Communities</span>
+              </div>
+              <!-- <div class="justify-content-between align-items-center d-none d-md-block">
+                <button (click)="previous(2)" [disabled]="previousAndNextbuttons[2].previousButton"
+                  class="btn scroll-btn">&lt;</button>
+                <button (click)="next(2)" [disabled]="previousAndNextbuttons[2].nextButton"
+                  class="btn scroll-btn ml-2">&gt;</button>
+              </div> -->
+            </div>
+
+            <div #panel3 id="scroll">
+
+              <ngx-slick-carousel class="otherProfileCurosel curosel"
+                *ngIf="communities.length>0 && !communitiesisLoading" [config]="slideConfig" (init)="slickInit($event)"
+                (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+                (beforeChange)="beforeChange($event)" #slickModal3="slick-carousel">
+
+                <div ngxSlickItem *ngFor="let community of communities">
+                  <div class="community-card-enclosure ">
+                    <div class="card cardbackground profile-options-cursor" [style.background-image]="
+                        'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url(' + community.cover + ')'
+                      " (click)="communityprofileroute(community.id)">
+                      <!-- [style.background-image]="'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)), url('+group.cover+')'" -->
+
+                      <div class="card-top">
+                        <img class="img-fluid" [src]="community.avatar" alt="notfound" />
+                        <div class="ml-2 card-name d-flex flex-column">
+                          <span class="headerfontcolor">{{ community.group_name | stringLength:'28'}}</span>
+                          <small class="time-stamp">created {{ community.time_text }}</small>
+                        </div>
+                      </div>
+                      <div class="card-bottom">
+                        <div class="members-avatars">
+                          <img *ngFor="let image of community.members.slice(0, 3); let i = index"
+                            class="img-fluid members-avatars-overlap" [style.left]="i * 0.9375 + 'em'"
+                            src="{{ image.avatar }}" alt="notfd" />
+                          <div *ngIf="community.members.length > 4" [style.left]="3 * 0.9375 + 'em'"
+                            class="members-avatar-count">
+                            + {{ community.members.length - 3 }}
+                          </div>
+                          <!-- <img class="img-fluid"  style="height:30px;width:30px;border-radius: 27px;position:absolute;
+                                bottom: 10px;" src="" alt="images from api" > -->
+                        </div>
+                        <div class="card-bottom-icons d-flex align-items-center">
+                          <img src="assets/images/community_images/posts.svg" class="cardicons" />
+                          <span class="ml-left-small">{{ community.post_count }}</span>
+                          <img src="assets/images/community_images/chat.svg" class="cardicons" />
+                          <span class="ml-left-small">{{ community.chat_count }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ngx-slick-carousel>
+
+            </div>
+            <ng-container *ngIf="communitiesisLoading">
+              <app-community-card-skeleton class="skeleton-width" [skLoaderCount]='3'>
+
+              </app-community-card-skeleton>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

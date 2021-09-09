@@ -1,0 +1,381 @@
+<div class="registration">
+    <div class=" d-none d-md-block">
+        <div class="rbanner">
+            <div style="width: 10%;"> </div>
+            <p>Registration</p>
+        </div>
+
+    </div>
+    <div class="sbanner d-block d-md-none d-flex flex-row align-items-center p-4">
+        <div style="color: white;" (click)="navigateToPreviosPage()"><img
+                src="assets/images/signupimages/mobile/backicon.svg" alt="back icon"></div>
+        <div class="pl-2 page-heading">
+            Registration
+        </div>
+    </div>
+
+    <div class="rform mt-4">
+        <form [formGroup]="registerform">
+            <div class="container" id="customcontainer">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+
+                        <div class="form-group">
+                            <label class="d-none d-md-block">FIRST NAME</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend"><img class="d-none d-md-block"
+                                            src="assets/images/signupimages/account-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/account-outline.svg">
+                                    </span>
+                                </div>
+                                <input class="form-control" formControlName="firstname"
+                                    [ngClass]="{'is-invalid':registerform.get('firstname').touched && registerform.get('firstname').invalid}"
+                                    type="text" placeholder="Enter First Name">
+                                <div class="invalid-feedback"
+                                    *ngIf="registerform.get('firstname').hasError('required')">
+                                    Please enter firstname
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('firstname').hasError('pattern')">
+                                    First name should contain only characters
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">LAST NAME</label>
+                            <div class="input-group">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <img class="d-none d-md-block"
+                                            src="assets/images/signupimages/account-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/account-outline.svg">
+                                    </span>
+
+                                </div>
+                                <input class="form-control" formControlName="lastname"
+                                    [ngClass]="{'is-invalid':registerform.get('lastname').touched && registerform.get('lastname').invalid}"
+                                    type="text" placeholder="Enter Last Name">
+                                <div class="invalid-feedback" *ngIf="registerform.get('lastname').hasError('required')">
+                                    Please enter lastname
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('lastname').hasError('pattern')">
+                                    Last name should contains only characters
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">USERNAME</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend"><img class="d-none d-md-block"
+                                            src="assets/images/signupimages/account-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/account-outline.svg"></span>
+                                </div>
+                                <input class="form-control" formControlName="username"
+                                    [ngClass]="{'is-invalid':registerform.get('username').touched && registerform.get('username').invalid}"
+                                    type="text" placeholder="Enter Username">
+                                <div class="invalid-feedback" *ngIf="registerform.get('username').hasError('required')">
+                                    Please enter username
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">PASSWORD</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend"><img class="d-none d-md-block"
+                                            src="assets/images/signupimages/lock-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/lock-outline.svg"></span>
+                                </div>
+                                <input class="form-control password" formControlName="password"
+                                    [ngClass]="{'is-invalid':registerform.get('password').touched && registerform.get('password').invalid}"
+                                    [type]="show?'password':'text'" placeholder="Enter Password">
+                                <div class="input-group-prepend">
+                                    <div *ngIf="show; else elseblock" class="showhideicon" class="showhideicon">
+                                        <span class="spanicon" (click)="showhidebtn(1)">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </span>
+                                    </div>
+                                    <ng-template #elseblock>
+                                        <div class="showhideicon">
+
+                                            <span class="spanicon" (click)="showhidebtn(1)"><i
+                                                    class="fas fa-eye"></i></span>
+                                        </div>
+
+                                    </ng-template>
+
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('password').hasError('required')">
+                                    Please enter password
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="registerform.get('password').hasError('minlength')">
+                                    Password should be minimum of 8 characters in length
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('password').hasError('pattern')">
+                                    Password Should contain atleast one Letter, Number, Special character and Upper-case
+                                    letter
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">RE-ENTER PASSWORD</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend"><img class="d-none d-md-block"
+                                            src="assets/images/signupimages/lock-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/lock-outline.svg"></span>
+                                </div>
+                                <input class="form-control password" formControlName="confirmpassword"
+                                    [ngClass]="{'is-invalid':registerform.get('confirmpassword').touched && registerform.get('confirmpassword').invalid}"
+                                    [type]="show1?'password':'text'" placeholder="Re-Type Password">
+                                <div class="input-group-prepend">
+                                    <div *ngIf="show1; else elseblock1" class="showhideicon">
+                                        <span class="spanicon" (click)="showhidebtn(2)">
+                                            <i class="fas fa-eye-slash"></i>
+                                        </span>
+
+                                    </div>
+                                    <ng-template #elseblock1>
+                                        <div class="showhideicon">
+                                            <span class="spanicon" (click)="showhidebtn(2)"><i
+                                                    class="fas fa-eye"></i></span>
+                                        </div>
+
+                                    </ng-template>
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="registerform.get('confirmpassword').hasError('required')">
+                                    Please enter confirm password
+                                </div>
+                                <div class="invalid-feedback"
+                                    *ngIf="registerform.get('confirmpassword').hasError('mustMatch')">
+                                    The passwords you have entered do not match
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">EMAIL ID</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend"><img class="d-none d-md-block"
+                                            src="assets/images/signupimages/email-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/email-outline.svg"></span>
+                                </div>
+                                <input class="form-control" formControlName="email"
+                                    [ngClass]="{'is-invalid':registerform.get('email').touched && registerform.get('email').invalid}"
+                                    type="email" placeholder="Enter Email Id">
+
+                                <div class="invalid-feedback" *ngIf="registerform.get('email').hasError('required')">
+                                    Please enter email
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('email').hasError('email')">
+                                    Please enter a valid email
+                                </div>
+                            </div>
+                        </div>
+                        <div class="offset-md-12 offset-lg-12 offset-xl-12"></div>
+                        <div class="offset-md-12 offset-lg-12 offset-xl-12"></div>
+                        <div class="offset-md-12 offset-lg-12 offset-xl-12"></div>
+                        <div class="d-none d-md-block " style="margin-top: 150px;">
+                            <button class="btn shadow-sm"
+                                style="background-color:#154166; color: white; border-radius: 30px; padding: 10px 20px 10px 20px;"
+                                (click)="formsubmit()"
+                                [disabled]="registerform.invalid || disableSignupBtn">REGISTER</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group" id="formGroup">
+                            <label class="d-none d-md-block">DATE OF BIRTH</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <img class="d-none d-md-block"
+                                            src="assets/images/signupimages/calendar-blank-outline.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/calender-mobile-icon.svg">
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" formControlName="dob" autoFocus
+                                    placeholder="Enter Date Of Birth" bsDatepicker #dp="bsDatepicker"
+                                    [ngClass]="{'is-invalid':registerform.get('dob').touched  && registerform.get('dob').invalid && ignoreDatePickerWhenopend}"
+                                    (onShown)="handler('onShown')" (onHidden)="handler('onHidden')">
+
+                                <!-- "
+                                    -->
+                                <!-- <input class="form-control" formControlName="dob"
+                                    [ngClass]="{'is-invalid':registerform.get('dob').touched && registerform.get('dob').invalid}"
+                                    type="date" placeholder="Enter Date Of Birth"> -->
+                                <div class="invalid-feedback" *ngIf="registerform.get('dob').hasError('required')">
+                                    Please enter your birthday
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('dob').hasError('invalidDate')">
+                                    Invaild date format
+                                </div>
+                                <div class="invalid-feedback" *ngIf="registerform.get('dob').hasError('ageError')">
+                                    Age Should be more than 18 years
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">CITY/STATE</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <img class="d-none d-md-block" src="assets/images/signupimages/map-marker.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/map-marker.svg">
+                                    </span>
+                                </div>
+                                <input class="form-control" formControlName="city"
+                                    [ngClass]="{'is-invalid':registerform.get('city').touched && registerform.get('city').invalid}"
+                                    type="text" placeholder="Enter City/State" ngx-google-places-autocomplete
+                                    [options]="{ types: [], componentRestrictions: { country: 'US' } }"
+                                    (onAddressChange)="cityChange($event)" autocomplete="off">
+                                <div class="invalid-feedback" *ngIf="registerform.get('city').hasError('required')">
+                                    Please select CITY/STATE
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="d-none d-md-block">COUNTRY</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend">
+                                        <img class="d-none d-md-block" src="assets/images/signupimages/map-marker.svg">
+                                        <img class="d-block d-md-none"
+                                            src="assets/images/signupimages/mobile/map-marker.svg">
+                                    </span>
+                                </div>
+                                <input class="form-control" formControlName="country" disabled="true">
+                                <!-- <select class="form-control" formControlName="country"
+                                    [ngClass]="{'is-invalid':registerform.get('country').touched && registerform.get('country').invalid}"
+                                    (onAddressChange)="countyChange($event)">
+                                    <option value=''>
+                                        select
+                                    </option>
+                                    <option *ngFor='let obj of countriesData' [value]='obj.value'>
+                                        {{obj.label}}
+
+                                    </option>
+                                </select> -->
+
+                                <div class="invalid-feedback" *ngIf="registerform.get('country').hasError('required')">
+                                    Please select COUNTRY
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <!-- <label>Country</label>
+                          <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                              </div>
+                              <input class="form-control" formControlName="dob" [ngClass]="{'is-invalid':registerform.get('dob').touched && registerform.get('dob').invalid}" type="text" placeholder="Enter Country">
+                          <div class="invalid-feedback" *ngIf="registerform.get('dob').hasError('required')">
+                              Enter Country
+                           </div>
+                          </div> -->
+
+                            <div class="filemain">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="filetoppart">
+                                        <div class="filetopinside">
+                                            <img class="filelogo" [src]="profilepreview()">
+
+                                            <div class="assuredlogo">
+                                                <img src="assets/images/signupimages/Group 1807.svg">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div style="max-width: 90%;">
+                                        <div style="text-align: center; "><b>{{registerform.value.username}}</b></div>
+                                        <div *ngIf="registerform.value.country && registerform.value.city"
+                                            style="text-align: center;">
+                                            <span><img src="assets/images/signupimages/Path 2187.svg"></span>
+                                            <span class="ml-2">{{registerform.value.city}},
+                                                {{registerform.value.country}}</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- <button style="position: absolute; top:0px; right:0px; ">upload</button> -->
+                                <div class="fileselectbtn">
+
+                                    <input id="file" type="file" (change)="fileseleted($event)"
+                                        [ngClass]="{'is-invalid':registerform.get('image').touched && registerform.get('image').invalid}"
+                                        class="file">
+                                    <label style="cursor: pointer;" for="file"><img
+                                            src="assets/images/signupimages/camera-outline.svg"></label>
+                                </div>
+
+                                <!-- <div  *ngIf=" registerform.get('image').hasError('required')">
+                             this is required
+                           </div> -->
+
+
+                            </div>
+                            <div class="text-danger" *ngIf="registerform.get('image').hasError('filesize')">
+                                File size should be less then 25MB
+                            </div>
+                            <div class="text-danger" *ngIf="registerform.get('image').hasError('filetype')">
+                                File should be of image format
+                            </div>
+                        </div>
+
+                        <!-- <div class="disclaimer">
+                            <p><b class="text-danger">Disclaimer</b></p>
+                            <p>Suspendisse facilisis tellus odio, sed posuere leo efficitur iaculis pha sellus quis
+                                blandit magna Integer ornare. Suspendisse facilisis tellus odio, sed posuere leo
+                                efficitur iaculis phasellus quis blandit magna Integer posuere Leo ornare.</p>
+                            <div style="text-align: center;">
+                                <button (click)="acceptTermsandConditions()" [disabled]="checkClicked()"
+                                    class="btn btn-danger Accept-btn">{{registerform.get('termsandconditions').hasError('required')?'ACCEPT':'ACCEPTED'}}</button>
+                            </div>
+                        </div> -->
+                        <div class="disclaimer d-flex justify-content-center">
+                            <div class="d-flex align-items-center">
+                                <input type="checkbox" value="accepted" (change)="acceptTermsandConditions()"
+                                    formControlName="termsandconditions">
+                                <div class="ml-2"><b class="text-danger">Terms and conditions</b></div>
+                                <div class="ml-2"><button class="btn btn-terms-conditions"
+                                        (click)="navigatetoTerms()">Read
+                                        more</button></div>
+                            </div>
+                        </div>
+
+                        <div class=" d-md-none pt-4 mb-4" style="text-align: center;">
+                            <button class="btn btn-block shadow-sm"
+                                style="background-color:#154166; color: white; border-radius: 30px; padding: 10px 0px 10px;"
+                                (click)="formsubmit()"
+                                [disabled]="registerform.invalid || disableSignupBtn">REGISTER</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

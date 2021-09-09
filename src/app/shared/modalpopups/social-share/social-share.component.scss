@@ -1,0 +1,142 @@
+.container-main{
+    width:300px;
+    height:auto;
+    margin-left: auto;
+    margin-right:auto;
+}
+.center-a{
+    text-align:center;
+    align-items:center;
+    justify-content:center;
+}
+.end-a{
+    text-align:right;
+    justify-content:flex-end;
+}
+.max-w{
+    width:100%;
+}
+.share-span{
+    font-size:16px;
+    color:#000000;
+    font-weight:600;
+}
+.close-dialog{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background-color:#ecedf3;
+    cursor:pointer;
+}
+.close-dialog i{
+    font-size: 13px;
+    color:#000000;
+}
+
+.pointer-cursor
+{
+    cursor: pointer;
+}
+.column-flex{
+    display:flex;
+    flex-direction: column;
+}
+.share-options{
+    margin-top:15px;
+}
+.icon-div{
+    height:50px;
+    width:50px;
+    border-radius:50%;
+}
+.icon-div img{
+    height:20px;
+    width:20px;
+}
+.bgc-blue{
+    background-color:#e8f7fe;
+}
+.bgc-reddit{
+    background-color:#ffeee8;
+}
+.bgc-discord{
+    background-color: #c2c4d7;
+}
+.bgc-whatsapp{
+    background-color:#d6ffec;
+}
+.bgc-wechat{
+    background-color:#f2f5ea;
+}
+.bgc-telegram{
+    background-color: #e1f3f3;
+}
+.bgc-messenger{
+    background-color: #9ddbff;
+}
+.bgc-facebook{
+    background-color: #d3dbe9;
+}
+.social-id{
+    font-size:12px;
+    color: #000000;
+    padding-top:7px;
+    display:block;
+}
+.options-row{
+    padding-top:15px;
+}
+.page-link{
+    font-size: 13px;
+    color:#000000;
+}
+.link-div{
+    background-color:#dfe0e2;
+    border-radius: 10px;
+    margin-top: 5px;
+    text-overflow: ellipsis;
+}
+.link-address{
+    color:#a1a6aa;
+    font-size: 11px;
+    margin: 8px 2px;
+}
+.copy-icon{
+    height:15px;
+    width:15px;
+}
+.standard-padding{
+    padding:0px 13px;
+}
+
+//tooltip styling
+
+// ::ng-deep .customtooltip
+// {
+//     background-color: black;
+    
+// }
+
+
+
+@media(max-width:475px){
+    .container-main{
+        width:270px;
+        height:auto;
+    }
+    .icon-div{
+        height:30px;
+        width:30px;
+        border-radius:50%;
+    }
+    .icon-div img{
+        height:12px;
+        width:12px;
+    }
+    .social-id{
+        font-size:10px;
+    }
+    .mat-dialog-container{
+        padding:20px 0px !important;
+    }
+}

@@ -1,0 +1,157 @@
+<mat-drawer-container [ngClass]="{'drawerContainer2':booleanValueForToggle ,'drawrerContainer':!booleanValueForToggle}"
+  autosize>
+  <mat-drawer #drawer class="drawer" mode="over" [position]="mobileQuery.matches ? 'start' : 'end'">
+    <div>
+      <div class="smenu-logo">
+        <img src='assets/images/logo.png' class="img-fluid" width="115" height="36" alt="Logo">
+        <a class="float-right close cursor-pointer" (click)="drawer.toggle()" (click)="changeToggleValueToNormal()">
+          <img src='assets/images/close.svg' class="img-fluid close-icon" width="16" height="16" alt="close">
+        </a>
+      </div>
+
+      <div class="smenu-profile-pic" *ngIf="user; else elseblock">
+        <div class="d-flex smenu-profile-pic-flex">
+          <img [src]="getProfileImage()" class=" img-fluid menu-profile-pic rounded-circle" width="61" height="61"
+            alt="profile-pic">
+          <div class="mt-2" class="userWelcome">
+            <div class="welcomeText">Welcome</div>
+            <div class="userFullName mt-1">
+              {{user.user_fullname}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #elseblock>
+        <div class="smenu-profile-pic cursor-pointer">
+          <img src='assets/images/profile%20pic.png' class="rounded img-fluid menu-profile-pic" width="61" height="61"
+            alt="profile-pic">
+          <a (click)="openModal()" class="pl-2">Login/Register</a>
+        </div>
+      </ng-template>
+
+      <div class="smenu-list pb-5">
+        <ul class="menu-list">
+          <li class="sub-list">
+            <a class="cursor-pointer sub-list-link" disabled="disabled" (click)="changeToggleValueToNormal()"
+              [routerLink]="['']">
+              <img src='assets/images/home.svg' width="26" height="22" class="img-fluid" alt="Home">
+              <span class="pl-3">Home</span>
+            </a>
+          </li>
+          <hr>
+          <li class="sub-list">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/Icon%20material-border-all.svg' width="26" height="22" class="img-fluid"
+                alt="Categories">
+              <span class="pl-3">Categories</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/market%20place.svg' width="26" height="22" class="img-fluid" alt="Marketplace">
+              <span class="pl-3">Marketplace</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/post-outline.svg' width="26" height="22" class="img-fluid" alt="Posts">
+              <span class="pl-3">Posts</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/shopping-outline.svg' width="26" height="22" class="img-fluid" alt="Offers">
+              <span class="pl-3">Offers</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/side%20meet%20now.svg' width="26" height="22" class="img-fluid" alt="Meet now">
+              <span class="pl-3">Meet now</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal()" [routerLink]="['/community']"
+              disabled="disabled">
+              <img src='assets/images/account-group-outline.svg' width="26" height="22" class="img-fluid"
+                alt="Communities">
+              <span class="pl-3">Communities</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/Icon%20metro-profile.svg' width="26" height="22" class="img-fluid"
+                alt="My Profile">
+              <span class="pl-3">My Profile</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/Icon%20material-notifications-none.svg' width="26" height="22" class="img-fluid"
+                alt="Notifications">
+              <span class="pl-3">Notifications</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top-li">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <img src='assets/images/Icon%20material-menu-settings.svg' width="26" height="22" class="img-fluid"
+                alt="Settings">
+              <span class="pl-3">Settings</span>
+            </a>
+          </li>
+          <hr>
+          <li class="sub-list">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <span>About</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <span>Support</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <span>Tutorial Videos</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <span>Rate Daily Nickel</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <span>Privacy policy</span>
+            </a>
+          </li>
+          <li class="sub-list custom-padding-top">
+            <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();openDialogComingsoon()">
+              <span>Contact Us</span>
+            </a>
+          </li>
+          <ng-container *ngIf="user">
+            <hr>
+            <li class="sub-list custom-padding-top">
+              <a class="cursor-pointer sub-list-link" (click)="changeToggleValueToNormal();logout()">
+                <span>Logout</span>
+              </a>
+            </li>
+          </ng-container>
+
+
+        </ul>
+      </div>
+      <div class="pb-3">
+        <img src='assets/images/Icon%20awesome-facebook-square.svg' class="cursor-pointer img-fluid pr-3"
+          alt="facebook">
+        <img src='assets/images/Icon%20awesome-twitter-square.svg' class="cursor-pointer img-fluid pr-3" alt="twitter">
+        <img src='assets/images/Icon%20awesome-linkedin.svg' class="cursor-pointer img-fluid pr-3" alt="linkedin">
+        <img src='assets/images/Icon%20awesome-youtube-square.svg' class="cursor-pointer img-fluid pr-3" alt="youtube">
+      </div>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content class="drawerContent" (click)="changeToggleValueToNormal()">
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,185 @@
+<div class="community-landing d-none d-md-block">
+  <div class='container' *ngIf='!community'>
+    <app-community-details-skeleton style="width: 100vw; margin-top: 9rem; margin-left: 10rem">
+    </app-community-details-skeleton>
+  </div>
+  <div class='container-div' *ngIf='community'>
+    <div class='maximum-width row community-data-div'>
+      <div class='col-1 col-md-1'></div>
+      <div class='col-5 col-md-5'>
+        <div class='community-data-row'>
+          <span class='quote-001'>{{community.username}}</span>
+        </div>
+        <div class='community-data-row'>
+          <span class='quote-002'>{{community.group_name}}</span>
+        </div>
+        <div class='community-data-row row'>
+          <div class='small-quotes-enclosure'>
+            <span class='small-quotes'>
+              <img src='assets/images/community_images/com_prof_calender.png'>
+              {{community.created_date ? (community.created_date | date) : 'N/A'}}
+            </span>
+          </div>
+          <div class='small-quotes-enclosure'>
+            <span class='small-quotes'>
+              <img src='assets/images/community_images/com_prof_location.png'>
+              {{community.address}}
+            </span>
+          </div>
+        </div>
+        <div class='community-data-row row'>
+          <div class='small-quotes-enclosure'>
+            <span class='small-quotes'> Community Type: <span class='blues'> {{community.typeName}} </span> </span>
+          </div>
+          <div class='small-quotes-enclosure'>
+            <span class='small-quotes'> Community Interest: <span class='blues'>{{community.interestName}}</span></span>
+          </div>
+        </div>
+      </div>
+      <div class='col-2 col-md-2'></div>
+      <div class='col-4 share-options-container'>
+        <div class='share-options'>
+          <div class='share-option' (click)="openDialogSocial()" style="cursor: pointer;">
+            <!-- <mat-icon aria-hidden="false" [inline]="true" aria-label="" class='material-icons-color-green'>share
+            </mat-icon> -->
+            <img src="assets/images/community_images/share1.svg" alt="share">
+
+          </div>
+          <a routerLink='/community'>
+            <div class='share-option'>
+              <img src="assets/images/community_images/home.svg" alt="home">
+
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class='row pt-5 pb-5 h-100'>
+
+        <div class='col-md-4 col-lg-3'>
+          <div class='nav flex-column nav-pills' id='v-pills-tab' role='tablist' aria-orientation='vertical'>
+            <a class='nav-link active' id='v-pills-profile-tab' data-toggle='pill' href='#v-pills-profile' role='tab'
+              aria-controls='v-pills-profile' aria-selected='true'>PROFILE
+              <img src='assets/images/community_images/profilewhite.svg' class='float-right'>
+            </a>
+            <a class='nav-link' id='v-pills-chat-tab' data-toggle='pill' href='#v-pills-chat' role='tab'
+              aria-controls='v-pills-chat' aria-selected='false' (click)="openDialogComingSoon()">CHAT
+              <img src='assets/images/community_images/call.svg' class='float-right'>
+            </a>
+            <a class='nav-link' id='v-pills-market-tab' data-toggle='pill' href='#v-pills-market' role='tab'
+              aria-controls='v-pills-market' aria-selected='false' (click)="openDialogComingSoon()">MARKET PLACE
+              <img src='assets/images/community_images/meet1.svg' class='float-right'>
+            </a>
+            <a class='nav-link' id='v-pills-members-tab' data-toggle='pill' href='#v-pills-members' role='tab'
+              aria-controls='v-pills-members' aria-selected='false' (click)="openDialogComingSoon()">MEMBERS
+              <img src='assets/images/community_images/com_prof_meet_now.svg' class='float-right'>
+            </a>
+            <a class='nav-link' id='v-pills-settings-tab' data-toggle='pill' href='#v-pills-settings' role='tab'
+              aria-controls='v-pills-settings' aria-selected='false' (click)="openDialogComingSoon()">COMMUNITY SETTINGS
+              <img src='assets/images/community_images/com_prof_settings.svg' class='float-right'>
+            </a>
+          </div>
+        </div>
+        <div class='col-md-8 col-lg-9'>
+          <div class='tab-content' id='v-pills-tabContent'>
+            <div class='tab-pane fade show active' id='v-pills-profile' role='tabpanel'
+              aria-labelledby='v-pills-profile-tab'>
+              <div class='row '>
+                <div class='col-md-12 community-carousel'>
+                  <div id='custCarousel' class='carousel slide' data-ride='carousel'>
+                    <!-- slides -->
+                    <div class='carousel-inner'>
+                      <div class='carousel-item active'><img [defaultImage]='defaultImage'
+                          [lazyLoad]='community.avatar'>
+                      </div>
+                    </div>
+                    <!-- Left right -->
+                    <!--<a class='carousel-control-prev' href='#custCarousel' data-slide='prev'>
+                  <span class='carousel-control-prev-icon'></span> </a> <a class='carousel-control-next'
+                                                                           href='#custCarousel' data-slide='next'> <span
+                  class='carousel-control-next-icon'></span> </a>-->
+                    <!-- Thumbnails -->
+                    <ol class='carousel-indicators list-inline'>
+                      <li class='list-inline-item active'><a id='carousel-selector-0' class='selected' data-slide-to='0'
+                          data-target='#custCarousel'>
+                          <img [defaultImage]='defaultImage' [lazyLoad]='community.avatar' class='img-fluid'> </a>
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+              <div class='row pt-xl-5'>
+                <div class='col-md-12'>
+                  <h4 class='hdr6'>Description</h4>
+                  <div class='content'>{{community.about}}</div>
+                  <h4 class='hdr6 pt-3'>Community Guidelines</h4>
+                  <div class='content'>
+                    N/A
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class='tab-pane fade' id='v-pills-chat' role='tabpanel' aria-labelledby='v-pills-chat-tab'>
+              Coming Soon...
+            </div>
+            <div class='tab-pane fade' id='v-pills-market' role='tabpanel' aria-labelledby='v-pills-market-tab'>
+              Coming Soon...
+            </div>
+            <div class='tab-pane fade' id='v-pills-members' role='tabpanel' aria-labelledby='v-pills-members-tab'>
+              Coming Soon...
+            </div>
+            <div class='tab-pane fade' id='v-pills-settings' role='tabpanel' aria-labelledby='v-pills-settings-tab'>
+              Coming Soon...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- mobile -->
+<div class='d-block d-md-none' *ngIf='!community'>
+  <app-community-details-skeleton style="width: 100vw; margin-top: 9rem; margin-left: 10rem">
+  </app-community-details-skeleton>
+</div>
+<div class="d-block d-md-none" *ngIf='community'>
+  <div class="header">
+    <div class="headerupperpart p-3 d-flex justify-content-between align-items-center">
+      <div class="leftpart d-flex  align-items-center">
+        <img [defaultImage]='defaultImage' [lazyLoad]='community.avatar' class="profile mr-2" alt="profile">
+        <div class="communityHeading">
+          {{community.name}}
+        </div>
+      </div>
+      <img src="assets/images/community_images/community-mobile/menu.svg" alt="menuicon"
+        (click)="openDialogComingSoon()">
+    </div>
+    <div class="headerlowerpart p-3 d-flex justify-content-between align-items-center">
+      <a class="homeicon pointer-cursor" routerLink="/community">
+        <img src="assets/images/community_images/community-mobile/home.svg" alt="home icon">
+      </a>
+      <!-- [routerLink]="['community-chat']" -->
+      <a routerLinkActive="activeclass" (click)="openDialogComingSoon()">
+        Chat
+      </a>
+      <!-- [routerLink]="['community-market-place']" -->
+      <a routerLinkActive="activeclass" (click)="openDialogComingSoon()">
+        Market Place
+      </a>
+      <!-- [routerLink]="['community-members']" -->
+      <a routerLinkActive="activeclass" (click)="openDialogComingSoon()">
+        Members
+      </a>
+      <a routerLink="community-profile" routerLinkActive="activeclass">
+        Profile
+      </a>
+
+    </div>
+  </div>
+  <div class="body container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,478 @@
+<div class="main-container">
+  <!-- <div class="position-absolute" style="right: 0px; top: 50%; z-index: 5; display: flex; height: 500px; width: 10%">
+    <div style="transform: rotate(-90deg); flex: 1">
+      <button
+        style="width: 160px"
+        type="button"
+        (click)="getMyCommunities()"
+        [ngClass]="{ tab1: myCommunitiesClicked, tab2: !myCommunitiesClicked }"
+        class="btn btn-primary btn-block border-0"
+      >
+        Map Search
+      </button>
+    </div>
+    <div style="transform: rotate(-90deg)">
+      <button
+        style="width: 160px; margin-left: 80px"
+        type="button"
+        (click)="getRecommendedCommunities()"
+        [ngClass]="{ tab1: !myCommunitiesClicked, tab2: myCommunitiesClicked }"
+        class="btn btn-primary btn-block border-0"
+      >
+        Community
+      </button>
+    </div>
+  </div> -->
+  <div class="banner">
+    <div class="landing-wish">
+      <div class="quotes-division">
+        <h1 class="quote-04211">Search, Sell & Buy</h1>
+        <h1 class="quote-04212">That's All We Do</h1>
+        <p class="quote-04213">
+          Consectetur adipisicing eliteiuim seteiusmod tempor incididunt utnae labore etnalom magna aliqua udiminimate
+        </p>
+
+        <div *ngIf="!isMobile" class="d-flex mt-4">
+          <p class="quote-04213">
+            Start With Top Searched Categories:
+          </p>
+          <img class="mt-2 ml-2" src="assets/images/curve-path.svg">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contentDiv">
+    <div *ngIf="!isMobile" class="scrollHide" style="overflow: auto">
+      <div class="row flex-row flex-nowrap">
+        <div *ngIf="!isMobile" class="md-12" style="position: absolute; top: -122px; right: 0px; z-index: 1">
+          <div class="mapsearch-btn" (click)="navigateToMapView()">
+            <p class="mapsearch-txt"><span class="material-icons side_icn"> map </span>MAPSEARCH</p>
+          </div>
+          <div class="community-btn" (click)="navigateToCommunity()">
+            <p class="community-txt"><span class="material-icons side_icn"> groups </span>COMMUNITIES</p>
+          </div>
+        </div>
+        <ng-container *ngFor="let item of productCategories; index as i">
+          <div class="focus-grid" (click)="onCategorySelection(item.category_id)">
+            <a>
+              <div class="category-card-042 row no-gutters">
+                <div class="col-4 all-center-a">
+                  <div class="focus-image-042 all-center-a">
+                    <img [src]="item.image_path" alt="1" />
+                  </div>
+                </div>
+                <div class="col-8 category-name-042">
+                  <span>{{ item.category_name }}</span>
+                </div>
+              </div>
+              <!-- <div class="focus-border">
+                <div class="focus-layout">
+                  <div class="focus-image">
+                    <img class="img-fluid" [src]="item.image_path" alt="1" />
+                  </div>
+                  <h4 class="clrchg">{{ item.category_name }}</h4>
+                </div>
+              </div> -->
+            </a>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div *ngIf="isMobile" class="products-presentation-m">
+      <div class="row justify-content-center products-section">
+        <div class="category-section-mob" *ngFor="let item of productCategories; index as i">
+          <div *ngIf="i < 7" class="d-flex flex-column mt-2" (click)="onCategorySelection(item.category_id)">
+            <div class="category-icon-mob">
+              <img class="img-fluid" [src]="item.image_path" alt="1" />
+            </div>
+            <span class="category-name-mob">{{ item.category_name }}</span>
+          </div>
+          <div *ngIf="i == 7 && !viewMoreClicked" class="d-flex flex-column mt-2"
+            (click)="viewMoreClicked = !viewMoreClicked">
+            <div class="category-icon-mob">
+              <img class="img-fluid" src="assets/images/viewmore.png" alt="1" />
+            </div>
+            <span class="category-name-mob">View More...</span>
+          </div>
+          <div *ngIf="i >= 7 && viewMoreClicked" class="d-flex flex-column mt-2"
+            (click)="onCategorySelection(item.category_id)">
+            <div class="category-icon-mob">
+              <img class="img-fluid" [src]="item.image_path" alt="1" />
+            </div>
+            <span class="category-name-mob">{{ item.category_name }}</span>
+          </div>
+          <!-- <div *ngIf="(productCategories.length-1)==i && viewMoreClicked" (click)="viewMoreClicked = !viewMoreClicked"
+            class="d-flex flex-column mt-2">
+            <div class="category-icon-mob">
+              <img class="img-fluid" src="assets/images/viewmore.png" alt="1" />
+            </div>
+            <span class="category-name-mob">View less...</span>
+          </div> -->
+        </div>
+        <div class="category-section-mob">
+          <div *ngIf=" viewMoreClicked" (click)="viewMoreClicked = !viewMoreClicked" class="d-flex flex-column mt-2">
+            <div class="category-icon-mob">
+              <img class="img-fluid" src="assets/images/viewmore.png" alt="1" />
+            </div>
+            <span class="category-name-mob">View Less...</span>
+          </div>
+        </div>
+
+
+        <!-- <div class="col-3 col-sm-3 category-section-mob m-2 p-1">
+          <div class="d-flex flex-column">
+            <div class="focus-image category-icon-mob">
+              <img class="img-fluid" src="assets/images/viewmore.png" alt="1" />
+            </div>
+            <h4 class="clrchg category-name-mob">View More...</h4>
+          </div>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="container-custom">
+      <div class="row no-gutters cards-presentation-products">
+        <app-community-card-skeleton class="skeleton-width" *ngIf="productsLoading"></app-community-card-skeleton>
+        <div class="max-w wrap-content" *ngIf="!productsLoading">
+          <!-- <div *ngFor="let product of products; index as i" class="col-md-3 mt-4 col-6">
+            <div class="cardshadow">
+              <mat-card class="p-0 example-card" (click)="openProductDetailsPage(product.id, product)">
+                <div class="likes">
+                  <span class="material-icons likesyb"> thumb_up_off_alt </span
+                  ><span class="align-top">{{ product.likes_count }}</span>
+                </div>
+                <img
+                  class="img-fluid m-0 ProductCardImg"
+                  mat-card-image
+                  [defaultImage]="defaultImage"
+                  [lazyLoad]="product.uri"
+                  alt="img"
+                />
+                <mat-card-content>
+                  <div class="rowpt ml-1" style="height: 90px">
+                    <div class="row pt-2">
+                      <div class="col-md-6 col-6">
+                        <mat-card-title class="hdr1">{{ product.name | titlecase }}</mat-card-title>
+                      </div>
+                      <div class="col-md-6 col-6 textalignr">
+                        <mat-card-subtitle class="hdr1_sub">${{ product.price }}</mat-card-subtitle>
+                      </div>
+                    </div>
+                    <div class="row rowpt5">
+                      <div class="col-md-7 col-6">
+                        <mat-card-title class="hdr1_sub1">{{ product.location }}</mat-card-title>
+                      </div>
+                      <div class="col-md-5 col-6 textalignr">
+                        <mat-card-subtitle class="hdr1_sub2">{{ product.time_text }}</mat-card-subtitle>
+                      </div>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div> -->
+
+          <div *ngFor="let product of products; index as i" class="product-card-enclosure">
+            <app-post [postUri]="product.uri" [postId]="product.id" [postLikesCount]="product.likes_count"
+              [postName]="product.name" [postPrice]="product.price" [postLocation]="product.location"
+              [postTimeText]="product.time_text" [postProductType]="product.type" [showLockIcon]="false"
+              [showSettingsIcon]="false" (onPostCardClicked)="openProductDetailsPage($event)"></app-post>
+            <!-- <div class="card-product shadow" (click)="openProductDetailsPage(product.id, product)">
+              <div class="image-container" [style.background-image]="'url(' + product.uri + ')'">
+                <div class="max-w d-flex text-end pr-3">
+                  <div class="icons-container">
+                    <div class="icon-div-menu d-none d-md-block">
+                      <i class="fas fa-ellipsis-v"></i>
+                    </div>
+                    <div class="icon-div-likes">
+                      <img src="../assets/images/other-profile/like.svg" />
+                      <span>
+                        {{ product.likes_count }}
+                      </span>
+                    </div>
+                    <div class="icon-div-bare d-none d-md-block">
+                      <img class="temporary" src="../assets/images/other-profile/privacy.svg" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="product-details-001">
+                <div class="max-w d-flex col-height-1">
+                  <div class="major-col">
+                    <span class="product-name">{{ product.name }}</span>
+                  </div>
+                  <div class="minor-col text-end">
+                    <span class="product-price">{{ product.price }}</span>
+                  </div>
+                </div>
+                <div class="max-w d-flex col-height-1">
+                  <div class="major-col">
+                    <span class="product-address">{{ product.location }}</span>
+                  </div>
+                  <div class="minor-col text-end">
+                    <span class="product-time">{{ product.time_text }}</span>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div *ngIf="products && products.length > 0" class="row justify-content-center">
+        <button type="button" class="btn btn-primary btn-block viewall" (click)="onClickViewAllProds()">
+          VIEW ALL PRODUCTS
+        </button>
+      </div>
+      <div *ngIf="!products || products.length == 0"
+        class="row justify-content-center font-weight-bold align-items-center notFound"
+        [ngClass]="{ notFoundMobile: isMobile }">
+        <span style="text-align: center">No products found, please try with another location</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 rowpt buyingDv">
+    <div class="row">
+      <div class="col-md-1 col-xl-1"></div>
+      <div class="col-md-5 col-xl-5 slideimglp">
+        <img class="img-fluid" src="assets/images/slide-img.png" alt="img" />
+      </div>
+      <div class="col-md-6 col-xl-6">
+        <div class="hdr3">Best Platform For</div>
+        <div class="hdr4">Buying & Selling</div>
+        <div class="col-md-8 col-xl-10 pl_0">
+          <p class="para">
+            Consectetur adipisicing eliteiuim lokat seteiusmod tempor incididunt utnae labore etnalom magnate.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="button" (click)="openDialogComingsoon()" class="btn btn-primary btn-block findout_btn">
+        FIND OUT MORE
+      </button>
+    </div>
+  </div>
+
+  <div class="joinadailDv1">
+    <div class="row max-w justify-content-center">
+      <div class="join-note">
+        <div class="hdr5 text-cen">Join a Daily Nickel Community Today!</div>
+        <div class="para1 text-cen">
+          <span class="para1-042">Daily Nickel is an online marketplace with the mission to change the way communities
+            sell, buy and work
+            together. We believe that commerce and collaboration should be secure, simple and seamless.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row no-gutters tabtp mb-5" [ngClass]="{ 'tabtp mb-5': !isMobile, communitybuttonsmobile: isMobile }">
+      <div class="col-6 d-flex center-a">
+        <button type="button" (click)="getMyCommunities()" [ngStyle]="{ 'font-size': isMobile ? '12px' : '14px' }"
+          [ngClass]="{ tab1: myCommunitiesClicked, tab2: !myCommunitiesClicked }"
+          class="btn btn-primary btn-block border-0" style="margin-right: 9px;">
+          My Communities
+        </button>
+      </div>
+      <div class="col-6 d-flex center-a">
+        <button [ngStyle]="{ 'font-size': isMobile ? '12px' : '14px' }" type="button"
+          (click)="getRecommendedCommunities(); myCommunitiesClicked = false"
+          [ngClass]="{ tab1: !myCommunitiesClicked, tab2: myCommunitiesClicked }"
+          class="btn btn-primary btn-block border-0" style="margin-left: 7px;">
+          Recommended
+        </button>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+    <div *ngIf="userLoggedIn$ | async; else notLoggedIn" class="max-w">
+      <div class="community-mobile-042">
+        <div class="row">
+          <app-community-card-skeleton class="skeleton-width" *ngIf="communityLoading"></app-community-card-skeleton>
+          <div class="row no-gutters" *ngIf="myCommunitiesClicked && !communityLoading">
+            <div *ngFor="let community of communities; let i = index" style="cursor: pointer"
+              (click)="navigateToCommunities(community.id)" [ngClass]="{ 'col-12': !isMobile, 'col-6': isMobile }"
+              class="col-sm-6 col-md-4 col-lg-3 pro_pd mb-0 mb-md-3 p-2">
+              <div class="community-card-enclosure">
+                <div class="card cardbackground" [style.background-image]="
+                    'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url(' + community.cover + ')'
+                  ">
+                  <div class="card-top">
+                    <img class="community-img-fluid" [src]="community.avatar" alt="notfound" />
+                    <div class="card-name ml-2">
+                      <span class="headerfontcolor">{{ community.group_name | titlecase }}</span>
+                      <small class="time-stamp">Created {{ community.time_text }}</small>
+                    </div>
+                  </div>
+                  <div class="card-bottom">
+                    <div class="members-avatars">
+                      <img *ngFor="let image of community.members | slice: 0:3; let i = index"
+                        class="community-img-fluid members-avatars-overlap" [style.left]="i * 15 + 'px'"
+                        src="{{ image.avatar }}" alt="notfd" />
+                      <div *ngIf="community.members.length > 4" class="members-avatar-count">
+                        + {{ community.members.length - 4 }}
+                      </div>
+                    </div>
+                    <div class="card-bottom-icons">
+                      <img class="ml_top" src="assets/images/community_images/posts.svg" />
+                      <span class="ml-left-small align-top">{{ community.post_count }}</span>
+                      <img class="ml_top" src="assets/images/community_images/chat.svg" />
+                      <span class="ml-left-small align-top">{{ community.chat_count }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row no-gutters" *ngIf="!myCommunitiesClicked && !communityLoading">
+            <div style="cursor: pointer" (click)="openDialogComingsoon()"
+              *ngFor="let community of communitiesrecommended; let i = index"
+              class="recommend-margin col-6 col-md-4 col-lg-3">
+              <div class="community-card-enclosure">
+                <div class="card cardbackground" [style.background-image]="
+                    'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url(' + community.cover + ')'
+                  ">
+                  <div class="card-top">
+                    <img class="community-img-fluid" [src]="community.avatar" alt="notfound" />
+                    <div class="card-name" class="ml-2">
+                      <span class="headerfontcolor">{{ community.group_name }}</span>
+                      <small class="time-stamp">created {{ community.time_text }}</small>
+                    </div>
+                  </div>
+
+                  <div class="recommend-bottom-flex">
+                    <div class="recommend-bottom">
+                      <span class="service-type">{{ community.typeName }}</span>
+                      <span class="member-count">{{ community.member_count }} members</span>
+                      <div class="mw-100 center-align">
+                        <button type="button" class="join-button">JOIN</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!communityLoading  && (!communities || communities.length == 0) && myCommunitiesClicked"
+          class="row justify-content-center font-weight-bold text-danger" style="color: #356083">
+          <span>No communities found</span>
+        </div>
+        <div
+          *ngIf="!communityLoading  && (!communitiesrecommended || communitiesrecommended.length == 0) && !myCommunitiesClicked"
+          class="row justify-content-center font-weight-bold text-danger" style="color: #356083">
+          <span>No communities found</span>
+        </div>
+      </div>
+    </div>
+    <ng-template #notLoggedIn>
+      <!-- <div class="col-md-12 mt-5"> -->
+      <div *ngIf="!myCommunitiesClicked">
+        <div class="community-mobile-042">
+          <div class="row" style="min-width: 95%">
+            <div style="cursor: pointer" (click)="openDialogComingsoon()"
+              *ngFor="let community of communitiesrecommended; let i = index"
+              class="recommend-margin col-6 col-md-4 col-lg-3">
+              <div class="community-card-enclosure">
+                <div class="card cardbackground" [style.background-image]="
+                  'linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0,0,0,0.6)),url(' + community.cover + ')'
+                ">
+                  <div class="card-top">
+                    <img class="community-img-fluid" [src]="community.avatar" alt="notfound" />
+                    <div class="card-name" class="ml-2">
+                      <span class="headerfontcolor">{{ community.group_name }}</span>
+                      <small class="time-stamp">created {{ community.time_text }}</small>
+                    </div>
+                  </div>
+
+                  <div class="recommend-bottom-flex">
+                    <div class="recommend-bottom">
+                      <span class="service-type">{{ community.typeName }}</span>
+                      <span class="member-count">{{ community.member_count }} members</span>
+                      <div class="mw-100 center-align">
+                        <button type="button" class="join-button">JOIN</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div *ngIf="myCommunitiesClicked" class="col-md-3"></div>
+      <div *ngIf="myCommunitiesClicked" class=" hdr7">
+        Please login to see your communities!
+        <span (click)="openModal()"><u class="pe-cursor"> Login here </u></span>
+      </div>
+      <!-- </div> -->
+    </ng-template>
+  </div>
+  <div>
+    <div class="col-12 mobileview">
+      <div class="get_t">Get the app</div>
+      <div class="get_para">Sell or buy. Almost anything.</div>
+      <div class="mobpl">
+        <div class="floatl">
+          <a href="#"><img class="img-fluid rounded" src="assets/images/gpay.png" alt="1" /></a>
+        </div>
+        <div class="floatl">
+          <a href="#"><img class="img-fluid rounded" src="assets/images/apppay.png" alt="1" /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isMobile" class="max-w trythebg">
+    <div class="trydiv-001">
+      <div class="tryhdr">Try the Daily Nickel APP</div>
+      <div class="trypara">Buy, sell and find just about anything using the app on your mobile.</div>
+      <div class="trypara1">Consectetur adipisicing eliteiuim lokat seteiusmod tempor incididunt utnae labore</div>
+      <div class="d-flex appimg">
+        <div class="p-2">
+          <a class="cursor-pointer" href="https://play.google.com/store/apps/details?id=com.stlogicsllc.dailynickel"
+            target="blank">
+            <img class="img-fluid rounded" src="assets/images/googleplay.png" alt="1" />
+          </a>
+        </div>
+        <div class="p-2">
+          <a class="cursor-pointer" href="https://apps.apple.com/us/app/dailynickel/id1309502194" target="blank">
+            <img class="img-fluid rounded" src="assets/images/appstore.png" alt="1" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isMobile" class="col-md-12 rowpt joinadailDv1">
+  <div class="row justify-content-center">
+    <div class="fluid-width">
+      <div class="hdr5">How It Works?</div>
+      <div class="para1">
+        Daily Nickel is an online marketplace with the mission to change the way communities sell, buy and work
+        together. We believe that commerce and collaboration should be secure, simple and seamless.
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center rowtp50">
+    <div class="howit_imglp">
+      <img class="card-img-top" src="assets/images/img-1.jpg" alt="image" />
+      <div class="card-body">
+        <h5 class="card-title">Connecting Communities</h5>
+      </div>
+    </div>
+    <div>
+      <img class="card-img-top" src="assets/images/img-2.jpg" alt="image" />
+      <div class="card-body">
+        <h5 class="card-title">Your Safety Is Our Priority</h5>
+      </div>
+    </div>
+    <div>
+      <img class="card-img-top" src="assets/images/img-3.jpg" alt="image" />
+      <div class="card-body">
+        <h5 class="card-title">List It. Fix It. Relax</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-mobile-footer class="mobile"></app-mobile-footer>

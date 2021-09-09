@@ -1,0 +1,88 @@
+<!-- <div class="container-fluid d-md-none">   
+  <div class="d-flex flex-row justify-content-around fixed-bottom bottomNavigation align-items-center">
+    <div class="bottomNavigationFont ml-2 mr-2 mt-1 d-flex flex-column align-items-center">
+      <img src="assets/images/mobile-footer/mob-home.svg" width="19" height="19" class="d-block">
+      <div>Home</div>
+    </div>
+    <div class="bottomNavigationFont mr-2 d-flex flex-column align-items-center mt-1">
+      <img src="assets/images/mobile-footer/mob-posts.svg" width="19" height="19" class="d-block">
+      <div>Posts</div>
+    </div>
+    <div class="btn-group" dropdown [dropup]="isDropup">
+      <div class="plusWrap d-flex align-items-center justify-content-center mt-1">
+        <div class="d-flex align-items-center justify-content-center plusBtn"><img id="button-dropup" dropdownToggle
+            src="assets/images/mobile-footer/mob-add-sell.svg" aria-controls="dropdown-dropup"></div>
+      </div>
+      <div class="d-flex flex-column align-items-center justify-content-center flex-wrap">
+        <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-dropup">
+          <div class="mt-3 d-flex flex-column align-items-center justify-content-center flex-wrap">
+            <button class="addGoodsBtn mt-3">Add Goods</button>
+            <button class="addSkillsBtn mt-4 ">Add Skills</button>
+          </div>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bottomNavigationFont mr-2 d-flex flex-column align-items-center mt-1">
+      <img src="assets/images/mobile-footer/mob-community.svg" width="19" height="19" class="d-block">
+      <div>Community</div>
+    </div>
+    <div class="bottomNavigationFont mr-2 d-flex flex-column align-items-center mt-1">
+      <img src="assets/images/mobile-footer/mob-offers.svg" width="19" height="19" class="d-block">
+      <div>Offers</div>
+    </div>
+  </div>
+</div> -->
+
+<div (click)="$event.stopPropagation()" class="outerdiv d-block d-md-none">
+  <!-- controls -->
+  <div style="width: 100vw" [ngClass]="{ openclass: open, closeclass: !open }">
+    <div>
+      <div class="d-flex flex-column align-items-center justify-content-center flex-wrap">
+        <ul id="dropdown-dropup" style="padding-left: 0px" role="menu" aria-labelledby="button-dropup">
+          <div class="mt-3 d-flex flex-column align-items-center justify-content-center flex-wrap">
+            <button class="addGoodsBtn mt-3" (click)="openDialogComingsoon()">Add Goods</button>
+            <button class="addSkillsBtn mt-4 " (click)="openDialogComingsoon()">Add Skills</button>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 100vw">
+    <div class="container-fluid d-md-none">
+
+      <div class="d-flex flex-row justify-content-around fixed-bottom bottomNavigation align-items-center">
+        <div class="bottomNavigationFont ml-2 mr-2 mt-1 d-flex flex-column align-items-center">
+          <img src="assets/images/mobile-footer/mob-home.svg" width="19" height="19" class="d-block">
+          <div class="pointer" routerLink=''>Home</div>
+        </div>
+        <div class="bottomNavigationFont mr-2 d-flex flex-column align-items-center mt-1">
+          <img src="assets/images/mobile-footer/mob-posts.svg" width="19" height="19" class="d-block">
+          <div (click)="openDialogComingsoon()" class="pointer">Posts</div>
+        </div>
+        <div class="btn-group">
+          <div class="plusWrap d-flex align-items-center justify-content-center mt-1">
+            <div class="d-flex align-items-center justify-content-center plusBtn" (click)="openControl()">
+              <img id="button-dropup" src="assets/images/mobile-footer/mob-add-sell.svg" />
+            </div>
+          </div>
+        </div>
+
+        <div class="bottomNavigationFont mr-2 d-flex flex-column align-items-center mt-1">
+          <img src="assets/images/mobile-footer/mob-community.svg" width="19" height="19" class="d-block">
+          <div class="pointer" [routerLink]="['/community']">Community</div>
+        </div>
+        <div class="bottomNavigationFont mr-2 d-flex flex-column align-items-center mt-1">
+          <img src="assets/images/mobile-footer/mob-offers.svg" width="19" height="19" class="d-block">
+          <div class="pointer" (click)="openDialogComingsoon()">Offers</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- <button (click)="openControl()">
+      open
+    </button> -->
+  </div>
+</div>

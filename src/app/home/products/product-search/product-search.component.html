@@ -1,0 +1,332 @@
+<div *ngIf="!isMobile" class="container" id="custom-container">
+  <div class="row">
+    <div class="col-md-4 col-lg-3 mt-xl-3" style="border-right: solid 3px #ddd">
+      <h4 class="hdr3_p">Location</h4>
+      <div class="flex-row flex-nowrap">
+        <div><span class="material-icons searchi"> search </span></div>
+        <input type="text" autocomplete="off" placeholder="Search Location" ngx-google-places-autocomplete
+          (onAddressChange)="handleAddressChange($event)"
+          class="searchCommunity form-control dropdown-toggle productSearch productS" id="menu2" name="productsearch"
+          data-toggle="dropdown" [(ngModel)]="searchLocation" />
+      </div>
+
+      <div class="row mb-2 mt-3">
+        <div class="col-md-6 mb-2 category-names" *ngFor="let mile of miles" (click)="milesButtonClicked(mile)">
+          <button type="button" class="btn btn-secondary M_btnbg" [ngClass]="{ 'active-mile': milesSelected === mile }">
+            {{ mile }} Miles
+          </button>
+        </div>
+      </div>
+      <div class="hdr3_p">Sort By</div>
+      <div class="row mb-2 mt-3">
+        <mat-radio-group class="mb-1" [(ngModel)]="orderdir">
+          <mat-radio-button class="col-md-12" [value]="'desc'" [disableRipple]="true" (click)="sortOrderChanged('desc')"
+            [checked]="orderdir === 'desc'">
+            Most Recent
+          </mat-radio-button>
+          <mat-radio-button class="col-md-12" [value]="'asc'" [disableRipple]="true" (click)="sortOrderChanged('asc')"
+            [checked]="orderdir === 'asc'">
+            Oldest
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="hdr3_p">Skills</div>
+      <ul style="list-style-type: none" class="ml-0 mb-0 pl-1">
+        <li>
+          <mat-checkbox class="example-margin" [checked]="checkedskillCategories?.length == skillCategories?.length"
+            (change)="showAllSkills($event)">Show All</mat-checkbox>
+        </li>
+      </ul>
+      <ul style="list-style-type: none" class="ml-0 pl-1">
+        <ng-container *ngFor="let category of skillCategories; index as j">
+          <li *ngIf="j < 7">
+            <mat-checkbox class="example-margin" [checked]="checkedskillCategories.includes(category.category_id)"
+              (change)="applySkill($event, category.category_id)">{{ category.category_name }}</mat-checkbox>
+          </li>
+          <div *ngIf="!expandSkillsFilterSection && j == 6" class="position-relative cursor-pointer"
+            (click)="showMoreSkills(true)">
+            <hr class="load-more-liner" />
+            <img src="assets/images/down-arrow2.svg" class="position-absolute load-more-arrow-icon" style="height: 20px"
+              alt="thumbicon" />
+          </div>
+
+          <li *ngIf="expandSkillsFilterSection && j >= 7">
+            <mat-checkbox class="example-margin" (change)="applySkill($event, category.category_id)">{{
+              category.category_name
+              }}</mat-checkbox>
+          </li>
+        </ng-container>
+        <div *ngIf="expandSkillsFilterSection" class="position-relative cursor-pointer" (click)="showMoreSkills(false)">
+          <hr class="load-more-liner" />
+          <img src="assets/images/up-arrow.svg" class="position-absolute load-more-arrow-icon" style="height: 20px"
+            alt="thumbicon" />
+        </div>
+      </ul>
+
+      <div class="hdr3_p">Goods</div>
+      <ul style="list-style-type: none" class="ml-0 mb-0 pl-1 pb-0">
+        <li>
+          <mat-checkbox class="example-margin" [checked]="checkedproductCategories?.length == productCategories?.length"
+            (change)="showAllGoods($event)">Show All</mat-checkbox>
+        </li>
+      </ul>
+      <ul style="list-style-type: none" class="ml-0 pl-1">
+        <ng-container *ngFor="let category of productCategories; index as k">
+          <li *ngIf="k < 7">
+            <mat-checkbox class="example-margin" [checked]="checkedproductCategories.includes(category.category_id)"
+              (change)="applyGood($event, category.category_id)">{{ category.category_name }}</mat-checkbox>
+          </li>
+          <div *ngIf="!expandGoodsFilterSection && k == 6" class="position-relative cursor-pointer"
+            (click)="showMoreGoods(true)">
+            <hr class="load-more-liner" />
+            <img src="assets/images/down-arrow2.svg" class="position-absolute load-more-arrow-icon" style="height: 20px"
+              alt="thumbicon" />
+          </div>
+
+          <li *ngIf="expandGoodsFilterSection && k >= 7">
+            <mat-checkbox class="example-margin" [checked]="checkedproductCategories.includes(category.category_id)"
+              (change)="applyGood($event, category.category_id)">{{ category.category_name }}</mat-checkbox>
+          </li>
+        </ng-container>
+        <div *ngIf="expandGoodsFilterSection" class="position-relative cursor-pointer" (click)="showMoreGoods(false)">
+          <hr class="load-more-liner" />
+          <img src="assets/images/up-arrow.svg" class="position-absolute load-more-arrow-icon" style="height: 20px"
+            alt="thumbicon" />
+        </div>
+      </ul>
+      <div class="hdr3_p">Price Range</div>
+      <div class="font-weight-bold pdt15">${{ minPrice }} - ${{ maxPrice }}</div>
+      <ngx-slider [(value)]="minPrice" [(highValue)]="maxPrice" class="dual-slider" [options]="sliderOptions">
+      </ngx-slider>
+
+      <div class="hdr1_cl text-black">Click 'Apply Filter' to get your desired search results</div>
+      <button type="button" class="btn btn-block viewall text-white" (click)="applyFilter()">Apply Filter</button>
+      <button type="button" class="btn btn-block d-flex pdl50" (click)="resetFilter()">
+        <i class="fa fa-refresh resicon"></i>
+        <div class="hdrres align-top">Reset Filer</div>
+      </button>
+    </div>
+    <div class="col-md-8 col-lg-9 pl-5">
+      <div class="row">
+        <div class="hdr1_sub2 pdt25 text-black" style="float: left">{{ totalProducts }} Results Found</div>
+      </div>
+      <div class="row topbr">
+        <div>
+          <div class="hdr6">Results for {{ searchWord }}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 pl_0">
+          <div *ngIf="totalProducts" class="hdr_res">
+            Showing {{ (pageNo - 1) * itemsLength + 1 }} - {{ (pageNo - 1) * itemsLength + products?.length }} of
+            {{ totalProducts }} results
+          </div>
+        </div>
+      </div>
+      <div class="row container_pt0">
+        <app-community-card-skeleton class="skeleton-width" [skLoaderCount]="6" [customClass]="'col-md-4'"
+          *ngIf="!productsLoaded"></app-community-card-skeleton>
+        <ng-container>
+          <div *ngFor="
+              let product of products
+                | paginate
+                  : {
+                      id: 'productsPaginator',
+                      itemsPerPage: itemsLength,
+                      currentPage: pageNo,
+                      totalItems: totalProducts
+                    };
+              index as i
+            " class="col-md-6 col-lg-4 mt-4">
+            <app-post [postUri]="product.uri" [postId]="product.id" [postLikesCount]="product.likes_count"
+              [postName]="product.name" [postPrice]="product.price" [postLocation]="product.location"
+              [postTimeText]="product.time_text" [postProductType]="product.type" [showLockIcon]="false"
+              [showSettingsIcon]="false" (onPostCardClicked)="openProductDetailsPage($event)"></app-post>
+          </div>
+          <ng-container *ngIf="productsLoaded && products?.length == 0">
+            <span class="no-product-data-text">No results matched your search :(</span>
+          </ng-container>
+        </ng-container>
+      </div>
+      <hr />
+      <pagination-controls (pageChange)="getPage($event)" id="productsPaginator"
+        *ngIf="productsLoaded && products.length" class="mt-1 text-center">
+      </pagination-controls>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isMobile && !showMobileFilterScreen" class="container" style="display: block">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="chip chip_active" (click)="openDialogComingsoon()">NEWEST</div>
+      <div class="chip" (click)="openDialogComingsoon()">PRICE</div>
+      <div class="chip" (click)="openDialogComingsoon()">GOODS</div>
+      <div class="chip" (click)="openDialogComingsoon()">SKILLS</div>
+      <div class="chipi" style="margin-top: 10px" (click)="setShowMobileFilterScreen(true)">
+        <span class="material-icons filter_i"> tune </span>
+      </div>
+    </div>
+  </div>
+  <div class="row container_pt0 no-gutters">
+    <div class="col-md-7 pl_0 ml-3">
+      <div *ngIf="totalProducts" class="hdr_res">
+        Showing {{ (pageNo - 1) * itemsLength + 1 }} - {{ (pageNo - 1) * itemsLength + products?.length }} of
+        {{ totalProducts }} results
+      </div>
+    </div>
+    <ng-container>
+      <div *ngFor="
+          let product of products
+            | paginate
+              : { id: 'productsPaginator', itemsPerPage: itemsLength, currentPage: pageNo, totalItems: totalProducts };
+          index as i
+        " class="col-6 col-lg-4 mt-4 p-1">
+        <div class="cardshadow">
+          <mat-card class="p-0 example-card" (click)="openProductDetailsPage(product.id, product)">
+            <div class="likes">
+              <span class="material-icons likesyb"> thumb_up_off_alt </span><span class="align-top">{{
+                product.likes_count }}</span>
+            </div>
+            <img class="img-fluid m-0" class="cardimage" src="{{ product.uri }}" alt="img" />
+            <mat-card-content>
+              <div class="rowpt ml-1">
+                <div class="d-flex justify-content-between pt-2">
+                  <div>
+                    <mat-card-title class="hdr1">{{ product.name | stringLength: '22' }}</mat-card-title>
+                  </div>
+                  <div>
+                    <mat-card-subtitle class="hdr1_sub">${{ product.price }}</mat-card-subtitle>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div style="width: 55%">
+                    <mat-card-title class="hdr1_sub1">{{ product.location | stringLength: '19' }}</mat-card-title>
+                  </div>
+                  <div>
+                    <mat-card-subtitle class="hdr1_sub2">{{ product.time_text }}</mat-card-subtitle>
+                  </div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <pagination-controls (pageChange)="getPage($event)" id="productsPaginator" *ngIf="productsLoaded" class="mt-3">
+      </pagination-controls>
+      <ng-container *ngIf="productsLoaded && products?.length == 0">
+        <span class="no-product-data-text">No results matched your search :(</span>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<div *ngIf="isMobile && showMobileFilterScreen" class="container" style="display: block">
+  <div class="row">
+    <div class="col-md-4 mt-xl-4">
+      <div class="row">
+        <div class="col-12 Goback">
+          <span class="material-icons gobacki align-top" (click)="setShowMobileFilterScreen(false)"> west </span>
+          Filters
+        </div>
+      </div>
+      <!-- <div class="row miles_rp">
+        <div class="hdr3_mb d-block col-md-12">Categories</div>
+        <mat-radio-group style="color: #666666" class="mb-1" [(ngModel)]="searchCategoryId">
+          <mat-radio-button
+            class="col-md-12"
+            *ngFor="let category of categories"
+            [value]="category?.category_id"
+            [disableRipple]="true"
+            (click)="searchCategoryId = category?.category_id"
+            [checked]="searchCategoryId === category?.category_id"
+          >
+            {{ category?.category_name }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div> -->
+      <!-- <div class="m-2 hdr3_p">Goods</div> -->
+
+      <div class="row miles_rp mt-2 no-gutters">
+        <h4 class="hdr3_p_mb">Location</h4>
+        <div class="col-12 flex-row pl_0">
+          <!-- <span class="fa fa-search form-control-feedback"></span> -->
+          <div><span class="material-icons searchi_m"> search </span></div>
+          <input type="text" autocomplete="off" placeholder=""
+            class="searchCommunity form-control dropdown-toggle productSearch productS" id="menu2" name="productsearch"
+            data-toggle="dropdown" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)"
+            [(ngModel)]="searchLocation" />
+        </div>
+      </div>
+      <div class="row miles_mt15 no-gutters">
+        <div class="milesDV category-names" *ngFor="let mile of miles" (click)="milesButtonClicked(mile)">
+          <button type="button" class="btn btn-secondary M_btnbg_mb"
+            [ngClass]="{ 'active-mile': milesSelected === mile }">
+            {{ mile }} Miles
+          </button>
+        </div>
+
+        <div class="row miles_rp no-gutters">
+          <div class="col-12 flex-row pl_0" style="margin-top: 15px">
+            <h4 class="hdr3_p_mb">Skills</h4>
+          </div>
+          <div class="row miles_mt10 no-gutters">
+            <div class="milesDV category-names" *ngFor="let category of skillCategories; index as j">
+              <button type="button" class="btn btn-secondary gry_chip"
+                (click)="skillButtonClicked(category.category_id)"
+                [ngClass]="{ 'active-mile': checkedskillCategories.includes(category.category_id) }">
+                {{ category.category_name }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row miles_rp no-gutters">
+          <div class="col-12 flex-row pl_0" style="margin-top: 15px">
+            <h4 class="hdr3_p_mb">Goods</h4>
+          </div>
+          <div class="row miles_mt10 no-gutters">
+            <div class="milesDV category-names" *ngFor="let category of productCategories; index as k">
+              <button (click)="goodsButtonClicked(category.category_id)" type="button"
+                class="btn btn-secondary gry_chip"
+                [ngClass]="{ 'active-mile': checkedproductCategories.includes(category.category_id) }">
+                {{ category.category_name }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div style="width: 100%; margin-bottom: 25px" class="row miles_rp no-gutters">
+          <div class="col-12 flex-row pl_0" style="margin-top: 15px">
+            <div class="hdr3_pmb">Price Range</div>
+          </div>
+          <div style="width: 100%" class="d-flex justify-content-between font-weight-bold pdt15_mb">
+            <div>${{ minPrice }}</div>
+            <div>${{ maxPrice }}</div>
+          </div>
+          <div class="col-12">
+            <ngx-slider style="width: 100%" [(value)]="minPrice" [(highValue)]="maxPrice" class="dual-slider"
+              [options]="sliderOptions" (userChangeStart)="onUserChange($event)" (userChange)="onUserChange($event)"
+              (userChangeEnd)="onUserChange($event)">
+            </ngx-slider>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="width: 100%" class="d-flex">
+      <div style="width: 50%">
+        <button style="width: 100%" type="button" class="btn btn-primary btn-block btn_bg btn_gry"
+          (click)="setShowMobileFilterScreen(false); applyFilter()">
+          APPLY FILTER
+        </button>
+      </div>
+      <div style="width: 50%">
+        <button style="width: 100%" type="button" class="btn btn-primary btn-block btn_bg btn_blu"
+          (click)="setShowMobileFilterScreen(false); resetFilter()">
+          RESET FILTER
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

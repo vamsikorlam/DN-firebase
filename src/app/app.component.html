@@ -1,0 +1,24 @@
+<div [ngClass]="{'popupopend':popOverCheck}">
+  <!-- [ngClass]="{'popupopend':}" -->
+  <!-- app header -->
+  <app-header (setBodyHeightWhenPopOverisOpened)="configWhenPopupOpen($event)" [ngClass]="{'d-none':!showHeader}">
+  </app-header>
+
+  <!-- empty space for mobile view top header -->
+  <ng-container>
+    <div class="d-md-none setheight" [ngClass]="{'d-none':!showHeader, 'setheight2':showHideCommunitySearch}">
+    </div>
+  </ng-container>
+
+  <!-- main app container -->
+  <div>
+
+  </div>
+  <div style="min-height: 500px">
+    <router-outlet></router-outlet>
+  </div>
+  <!-- app footer -->
+
+  <!-- <app-footer></app-footer> -->
+  <app-footer [ngClass]="{'d-none':!showFooter}"></app-footer>
+</div>

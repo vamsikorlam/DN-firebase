@@ -1,0 +1,501 @@
+<div class="container main-container pr-0 pl-0">
+  <div *ngIf="userDetailsisLoading" class="d-flex align-items-center justify-content-center" style="height: 80vh">
+    <!-- <mat-spinner [defaultColor]="spinnerColor"></mat-spinner> -->
+    <app-product-details-skeleton style="width: 100vw; margin-top: 9rem; margin-left: 3rem">
+      <h1>This is in side slseleton</h1>
+    </app-product-details-skeleton>
+  </div>
+  <div *ngIf="!userDetailsisLoading" class="product-container"
+    [ngClass]="{ 'prod-container-web': !isMobile, 'prod-container-mob': isMobile }">
+    <div class="row">
+      <div *ngIf="!isMobile" class="col-md-5 col-lg-5 col-xl-5">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="row">
+              <div class="col-md-12 pr-0 pl-0">
+                <div id="custCarousel" class="carousel slide" data-ride="carousel">
+                  <!-- slides -->
+                  <div class="carousel-inner">
+                    <ng-container *ngFor="let img of imgList; index as i">
+                      <div class="carousel-item" [ngClass]="{ active: i == 0 }">
+                        <img src="{{ img.uri }}" style="background-size: cover" alt="Hills" />
+                      </div>
+                    </ng-container>
+                  </div>
+                  <!-- Left right -->
+                  <a class="carousel-control-prev" [ngClass]="{'d-none':imgList.length<=1}" href="#custCarousel"
+                    data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                  </a>
+                  <a class="carousel-control-next" [ngClass]="{'d-none':imgList.length<=1}" href="#custCarousel"
+                    data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                  </a>
+                  <!-- Thumbnails -->
+                  <ol class="carousel-indicators list-inline mr-0 ml-0">
+                    <ng-container *ngFor="let img of imgList; let j = index">
+                      <li class="list-inline-item active">
+                        <a id="carousel-selector-{{ j }}" class="selected" [attr.data-slide-to]="j"
+                          data-target="#custCarousel">
+                          <img src="{{ img.uri }}" class="img-fluid" />
+                        </a>
+                      </li>
+                    </ng-container>
+                  </ol>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="!(product.User_Id == user?.user_id)" class="row pt-xl-5 mt-5 mx-1 tablet-margin"
+              (click)="$event.stopPropagation()">
+              <div class="col-md-6 px-1">
+                <button type="button" class="btn btn-primary btn-block border-0 prod-tab prod-tab2"
+                  [ngClass]="{ 'prod-clicked-tab': contactSellerButtonClicked != 0 }" (click)="contactSellerClicked()">
+                  CONTACT SELLER
+                </button>
+              </div>
+              <div class="col-md-6 px-1">
+                <button type="button" class="btn btn-primary btn-block border-0 prod-tab prod-tab1"
+                  [ngClass]="{ 'prod-clicked-tab': placeOrderButtonClicked != 0 }" (click)="openDialogComingsoon()">
+                  PLACE ORDER
+                </button>
+              </div>
+            </div>
+            <div (click)="$event.stopPropagation()" *ngIf="contactSellerButtonClicked == 1"
+              class="d-flex px-1 py-1 mx-2 contact-seller">
+              <div class="px-5 py-3 flex-1 tablet-contact-seller">
+                <a (click)="openDialogComingsoon()">
+                  <img src="assets/images/call.svg" class="img-fluid small-img25" />
+                </a>
+              </div>
+              <div class="px-5 py-3 flex-1 web-contact-seller-chat tablet-contact-seller-chat"
+                style="border-left: 1px solid #ddd; border-right: 1px solid #ddd">
+                <a (click)="openDialogComingsoon()">
+                  <img src="assets/images/chat.svg" class="img-fluid small-img25" /></a>
+              </div>
+              <div class="px-5 py-3 flex-1 tablet-contact-seller">
+                <a (click)="openDialogComingsoon()"><img src="assets/images/msg.svg"
+                    class="img-fluid small-img25" /></a>
+              </div>
+            </div>
+            <div (click)="$event.stopPropagation()" *ngIf="placeOrderButtonClicked == 1"
+              class="d-flex px-1 py-1 mx-2 contact-seller">
+              <div class="shadow-lg w-100 p-3">
+                <label class="place-order-form-label mb-0">YOUR OFFER</label>
+                <input class="place-order-form-input mb-3" style="height: 20%" type="text"
+                  placeholder="Enter Offer Price" /><br />
+                <label class="place-order-form-label mb-0">YOUR COMMENTS</label>
+                <input class="place-order-form-input" style="height: 20%" type="text" placeholder="Your Comments" />
+                <button type="button" class="btn btn-primary btn-block border-0 prod-tab prod-tab1 my-3"
+                  (click)="openDialogComingsoon()">
+                  MAKE OFFER
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7 col-lg-7 col-xl-7 pl-0 pr-0">
+        <div *ngIf="!isMobile" class="status-rating">
+          <div class="status-container col-6 pl-0">
+            <!-- <a [routerLink]="['/other-profile']"> -->
+            <a class="status-container-avatar" (click)="otherProfile()">
+              <img class="img-fluid rounded-circle" style="border-radius: 50%"
+                src="{{ product.publisher.Avatar_Image }}" alt="Lorina Statham" class="status-icon" />
+
+              <div class="status-contant">
+                <h4>{{ product.publisher.User_Full_Name }}</h4>
+              </div>
+            </a>
+          </div>
+          <div class="rating-container col-5">
+            <span>Posted {{ product.product.Product_Formatted_Time }}</span>
+            <div class="rating">
+              <app-star-rating-bar [dnRating]="product.product.Product_Rating"
+                (ratingUpdated)="onRatingChanged($event)"></app-star-rating-bar>
+              <span class="rating-views">{{ product.product.Product_Rating }}/5 ({{ product.product.Product_Rating_Total
+                }})</span>
+            </div>
+          </div>
+          <div class="col-1"></div>
+        </div>
+
+        <div class="product-content-section">
+          <span *ngIf="product.product.TagsArray.length" class="hashtag-section">
+            <img class="feather-icon" src="assets/images/icon-feather-tag.svg" alt="Lorina Statham" />
+            <a style='cursor: pointer;' *ngFor="let tag of product.product.TagsArray; index as i"
+              (click)="routeToProductList(tag)"> #{{ tag }} </a>
+          </span>
+          <span *ngIf="isMobile">
+            <span class="focus-image-prod cursor-pointer" (click)="socialShareOpen()">
+              <img class="w-75" src="assets/images/community_images/share1.svg" alt="share" />
+            </span>
+            <span class="focus-image-prod mr-2">
+              <i [ngClass]="{ 'fa-heart': true, far: !isLiked, fas: isLiked }" (click)="likeProduct()" *ngIf="user"
+                style="margin-top: 5px"></i>
+              <i [ngClass]="{ 'fa-heart': true, far: !isLiked, fas: isLiked }" (click)="openModal()" *ngIf="!user"
+                style="margin-top: 5px"></i>
+            </span>
+          </span>
+
+          <h2 class="product-title">{{ product.product.Product_Name }}</h2>
+
+          <div *ngIf="!isMobile" class="product-viewes">
+            <span class="d-flex">
+              <img class="feather-icon" src="assets/images/location.svg" alt="Lorina Statham" />
+              <div class="font-16"> {{ product.product.Location_Address }} </div>
+            </span>
+
+            <span class="d-flex"><img class="feather-icon" src="assets/images/calender.svg" alt="Lorina Statham" />
+              <div class="font-16"> {{ product.product.Product_Formatted_Time }} </div>
+            </span>
+          </div>
+
+          <!-- static code for rectangle-black -->
+
+          <!-- <div class="dollar-div">
+            <div *ngIf="!isGood && product.product.Pricing_Type == 0" class="or-radio">
+              <span>OR</span>
+            </div>
+            <div class="max-w-50 d-flex center-a" [ngClass]="{ 'border-right': !isGood }">
+              <div class="first-dollar-wrap">
+                <span class="miniate-span">FIXED PRICE</span>
+                <span *ngIf="isGood" class="number-16">${{ product.product.Price_Value }}</span>
+                <span *ngIf="!isGood && (product.product.Pricing_Type == 0 || 2)" class="number-16">${{
+                  product.product.Price_Value }}</span>
+              </div>
+            </div>
+            <div *ngIf="!isGood && (product.product.Pricing_Type == 0 || 1)"
+              class="max-w-50 d-flex center-a column-flex">
+              <div class="max-w d-flex center-a">
+                <span class="miniate-span">HOURLY RANGE</span>
+              </div>
+              <div class="max-w d-flex second-dollar center-a">
+                <span>${{ product.product.Max_Price }} - ${{ product.product.Min_Price }}</span>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- static code for rectangle-black -->
+
+          <div class="row no-gutters mt-3" *ngIf="!isMobile">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+              <div class="dollar-div">
+                <div *ngIf="!isGood && product.product.Pricing_Type == 0" class="or-radio">
+                  <span>OR</span>
+                </div>
+                <div class="max-w-50 d-flex center-a" [ngClass]="{ 'border-right': !isGood }">
+                  <div class="first-dollar-wrap">
+                    <span class="miniate-span">FIXED PRICE</span>
+                    <span *ngIf="isGood" class="number-16">${{ product.product.Price_Value }}</span>
+                    <span *ngIf="!isGood && (product.product.Pricing_Type == 0 || 2)" class="number-16">${{
+                      product.product.Price_Value }}</span>
+                  </div>
+                </div>
+                <div *ngIf="!isGood && (product.product.Pricing_Type == 0 || 1)"
+                  class="max-w-50 d-flex center-a column-flex">
+                  <div class="max-w d-flex center-a">
+                    <span class="miniate-span">HOURLY RANGE</span>
+                  </div>
+                  <div class="max-w d-flex second-dollar center-a">
+                    <span>${{ product.product.Max_Price }} - ${{ product.product.Min_Price }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-5 col-lg-5 col-xl-5">
+              <span class="focus-image-prod cursor-pointer" (click)="socialShareOpen()">
+                <img class="mt-1" src="assets/images/community_images/share1.svg" alt="share" />
+              </span>
+              <span class="focus-image-prod mr-2">
+                <i [ngClass]="{ 'fa-heart fa-2x': true, far: !isLiked, fas: isLiked }" (click)="likeProduct()"
+                  *ngIf="user" style="margin-top: 5px"></i>
+                <i [ngClass]="{ 'fa-heart fa-2x': true, far: !isLiked, fas: isLiked }" (click)="openModal()"
+                  *ngIf="!user" style="margin-top: 5px"></i>
+              </span>
+            </div>
+
+            <div class="col-1 col-md-1 col-lg-1 col-xl-1"></div>
+          </div>
+
+          <!-- <div *ngIf="!isMobile" class="price-share">
+            <div class="whatchlist-share position-absolute">
+              <span class="focus-image-prod cursor-pointer" (click)="socialShareOpen()">
+                <img class="mt-1" src="assets/images/community_images/share1.svg" alt="share" />
+              </span>
+              <span class="focus-image-prod">
+                <i [ngClass]="{ 'fa-heart fa-2x': true, far: !isLiked, fas: isLiked }" (click)="likeProduct()"
+                  *ngIf="user" style="margin-top: 5px"></i>
+                <i [ngClass]="{ 'fa-heart fa-2x': true, far: !isLiked, fas: isLiked }" (click)="openModal()"
+                  *ngIf="!user" style="margin-top: 5px"></i>
+              </span>
+            </div>
+          </div> -->
+        </div>
+
+        <div *ngIf="isMobile" class="status-rating py-1 my-1">
+          <div class="views-container">
+            <span class="mr-3">
+              <img class="feather-icon mx-1" src="assets/images/location.svg" alt="Lorina Statham" />
+              {{ product.product.Location_Address }}</span>
+            <span><img class="feather-icon mx-1" src="assets/images/calender.svg" alt="Lorina Statham" />{{
+              product.product.Product_Formatted_Time
+              }}</span>
+          </div>
+          <div class="rating-container">
+            <!-- <span>Posted {{ product.product.Product_Formatted_Time }}</span> -->
+            <div class="rating">
+              <app-star-rating-bar [dnRating]="product.product.Product_Rating"
+                (ratingUpdated)="onRatingChanged($event)"></app-star-rating-bar>
+              <span class="rating-views">{{ product.product.Product_Rating }}/5 ({{ product.product.Product_Rating_Total
+                }})</span>
+            </div>
+          </div>
+        </div>
+        <div class="row d-block d-md-none">
+          <div class="col-12">
+            <div class="dollar-div">
+              <div *ngIf="!isGood && product.product.Pricing_Type == 0" class="or-radio">
+                <span>OR</span>
+              </div>
+              <div class="max-w-50 d-flex center-a" [ngClass]="{ 'border-right': !isGood }">
+                <div class="first-dollar-wrap">
+                  <span class="miniate-span">FIXED PRICE</span>
+                  <span *ngIf="isGood" class="number-16">${{ product.product.Price_Value }}</span>
+                  <span *ngIf="!isGood && (product.product.Pricing_Type == 0 || 2)" class="number-16">${{
+                    product.product.Price_Value }}</span>
+                </div>
+              </div>
+              <div *ngIf="!isGood && (product.product.Pricing_Type == 0 || 1)"
+                class="max-w-50 d-flex center-a column-flex">
+                <div class="max-w d-flex center-a">
+                  <span class="miniate-span">HOURLY RANGE</span>
+                </div>
+                <div class="max-w d-flex second-dollar center-a">
+                  <span>${{ product.product.Max_Price }} - ${{ product.product.Min_Price }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div *ngIf="isMobile && isGood" class="rectangle-black">
+          <div>fixed Price</div>
+          <div>
+            <span>${{ product.product.Price_Value }}</span>
+          </div>
+        </div> -->
+
+        <!-- <div *ngIf="isMobile && !isGood" [ngSwitch]="product.product.Pricing_Type" class="rectangle-black">
+          <ng-container *ngSwitchDefault>
+            <div>fixed Price</div>
+            <div>
+              <span>${{ product.product.Price_Value }}</span>
+            </div>
+          </ng-container>
+          <ng-container *ngSwitchCase="2 || 0">
+            <div>fixed Price</div>
+            <div>
+              <span>${{ product.product.Price_Value }}</span>
+            </div>
+          </ng-container>
+          <ng-container *ngSwitchCase="1 || 0">
+            <div>hourly range</div>
+            <div>
+              <span>${{ product.product.Max_Price }} - ${{ product.product.Min_Price }}</span>
+            </div>
+          </ng-container>
+        </div> -->
+        <div *ngIf="isMobile" class="row py-5">
+          <div class="col-md-12">
+            <div id="custCarousel" class="carousel slide" data-ride="carousel">
+              <!-- slides -->
+              <div class="carousel-inner">
+                <ng-container *ngFor="let img of imgList; index as i">
+                  <div class="carousel-item" [ngClass]="{ active: i == 0 }">
+                    <img src="{{ img.uri }}" style="background-size: cover" alt="Hills" />
+                  </div>
+                </ng-container>
+              </div>
+              <!-- Left right -->
+              <a class="carousel-control-prev" href="#custCarousel" [ngClass]="{'d-none':imgList.length<=1}"
+                data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#custCarousel" [ngClass]="{'d-none':imgList.length<=1}"
+                data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+              <!-- Thumbnails -->
+              <ol class="carousel-indicators list-inline mr-0 ml-0">
+                <ng-container *ngFor="let img of imgList; let j = index">
+                  <li class="list-inline-item active">
+                    <a id="carousel-selector-{{ j }}" class="selected" [attr.data-slide-to]="j"
+                      data-target="#custCarousel">
+                      <img src="{{ img.uri }}" class="img-fluid" />
+                    </a>
+                  </li>
+                </ng-container>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isMobile" class="status-rating">
+          <div class="status-container" (click)="otherProfile()">
+            <img class="img-fluid rounded-circle" style="border-radius: 50%" src="{{ product.publisher.Avatar_Image }}"
+              alt="Lorina Statham" class="status-icon" />
+            <div class="status-contant">
+              <h4>{{ product.publisher.User_Full_Name }}</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-text">
+          <h3 class="product-titles-two">Availability</h3>
+          <div *ngIf="fillAvailabilityDays()" class="week-names">
+            <ng-container *ngFor="let day of availabilityDays">
+              <span class="mb-2" [ngClass]="{ 'available-days': day.isAvailable, 'NA-days': !day.isAvailable }">{{
+                day.text
+                }}</span>
+            </ng-container>
+          </div>
+          <p>{{ product.product.Start_Time }} - {{ product.product.End_Time }}</p>
+          <h3 class="product-titles-two">Description</h3>
+          <p>{{ product.product.Product_Description }}</p>
+          <h3 class="product-titles-two">Buyer Guidelines</h3>
+          <ul class="ul-padding">
+            <li>N/A</li>
+          </ul>
+          <h3 class="product-titles-two">Category</h3>
+          <ng-container *ngFor="let category of product.product.Product_Category">
+            <div *ngIf="!isMobile" class="category-names" (click)="openDialogComingsoon()">
+              <span>{{ category.name }}</span>
+            </div>
+            <ul *ngIf="isMobile" style="padding-left: 10px;" (click)="openDialogComingsoon()">
+              <li>{{ category.name }}</li>
+            </ul>
+          </ng-container>
+          <div [ngClass]="{ 'border p-1 mt-2': isMobile }">
+            <h3 class="product-titles-two" [ngClass]="{ 'mx-2 p-1 border-bottom mt-0': isMobile }">Location</h3>
+            <p [ngClass]="{ 'mx-2 p-1': isMobile }">{{ product.product.Location_Address }}</p>
+            <div class="map p-2">
+              <agm-map [latitude]="customParseInt(product.product.Latitude)"
+                [longitude]="customParseInt(product.product.Longitude)" [disableDefaultUI]="true">
+                <agm-marker [latitude]="customParseInt(product.product.Latitude)"
+                  [longitude]="customParseInt(product.product.Longitude)" [markerClickable]="false"></agm-marker>
+              </agm-map>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-1"></div> -->
+    </div>
+  </div>
+
+  <div class="product-container" style="padding-top: 30px">
+    <!-- <div class="container"> -->
+    <h2 class="similar-products-title">Similar Products</h2>
+    <app-community-card-skeleton class="skeleton-width"
+      *ngIf="isLoading && !similarProductsNotFound; else noProductsFound"></app-community-card-skeleton>
+    <div class="row">
+      <ngx-slick-carousel class="carouselproductdetail" #slickModal="slick-carousel" [config]="slideConfig"
+        (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+        (beforeChange)="beforeChange($event)" *ngIf="!isLoading">
+        <div ngxSlickItem class="mr-2" *ngFor="let product of similarProducts; index as i">
+          <app-post [postUri]="product.product.uri" [postId]="product.product.Product_Id"
+            [postLikesCount]="product.likes_count" [postName]="product.product.Product_Name"
+            [postPrice]="product.product.Price_Value" [postLocation]="product.product.Location_Address"
+            [postTimeText]="product.product.Product_Formatted_Time" [postProductType]="product.product.Product_Type"
+            [showLockIcon]="false" [showSettingsIcon]="false" (onPostCardClicked)="sliderClick($event)"></app-post>
+        </div>
+      </ngx-slick-carousel>
+      <ng-template #noProductsFound>
+        <div style="color: #356083;" class="d-flex justify-content-center">
+          {{similarProductsNotFound}}
+        </div>
+      </ng-template>
+
+    </div>
+    <!-- <div class="row pb-4">
+      <ngx-slick-carousel class="product-details-carousel" #slickModal="slick-carousel" [config]="slideConfig"
+        (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+        (beforeChange)="beforeChange($event)" *ngIf="!isLoading && isMobile">
+        <div ngxSlickItem *ngFor="let product of similarProducts; index as i">
+          <app-post [postUri]="product.product.uri" [postId]="product.product.Product_Id"
+            [postLikesCount]="product.likes_count" [postName]="product.product.Product_Name"
+            [postPrice]="product.product.Price_Value" [postLocation]="product.product.Location_Address"
+            [postTimeText]="product.product.Product_Formatted_Time" [postProductType]="product.product.Product_Type"
+            [showLockIcon]="false" [showSettingsIcon]="false" (onPostCardClicked)="sliderClick($event)"></app-post>
+
+        </div>
+      </ngx-slick-carousel>
+    </div> -->
+    <!-- </div> -->
+  </div>
+</div>
+
+<div *ngIf="isMobile">
+  <div (click)="$event.stopPropagation()">
+    <!-- controls -->
+
+    <div class="mob-buttons-container">
+      <div class="product-pop-over"
+        [ngClass]="{ 'openclass placeorder': placeOrderButtonClicked, closeclass: !placeOrderButtonClicked }">
+        <div class="d-flex justify-content-end mt-2">
+          <i class="fa fa-times mr-4" (click)="close()"></i>
+        </div>
+        <div class="d-flex flex-column justify-content-center align-items-center mt-3"
+          style="border-bottom: 1px solid white">
+          <div>Your Offer</div>
+          <div class="pb-2">{{ product.product.Price_Value | currency: '$' }}</div>
+        </div>
+        <div class="d-flex align-items-center m-2">
+          <img [src]="imgList[0].uri" alt="image" style="width: 30px; height: 30px; border-radius: 10px" />
+          <div class="ml-2">{{ product.product.Product_Name }}</div>
+        </div>
+        <div class="form">
+          <form>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Your Comments" />
+            </div>
+            <div class="mb-3">
+              <button class="btn custombtn">MAKE OFFER</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="product-pop-over"
+        [ngClass]="{ 'openclass share': contactSellerButtonClicked, closeclass: !contactSellerButtonClicked }">
+        <div>
+          <div style="max-width: 80%; margin-left: auto; margin-right: auto; height: 90px"
+            class="d-flex align-items-center justify-content-between flex-wrap">
+            <div>
+              <img src="assets/images/call.svg" alt="icon1" />
+            </div>
+            <div>
+              <img src="assets/images/chat.svg" alt="icon2" />
+            </div>
+            <div>
+              <img src="assets/images/msg.svg" alt="icon3" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!(product.User_Id == user?.user_id)">
+        <div class="btn w-50 mob-btn-contact-seller h-100" [ngClass]="{ 'prod-clicked-tab': buttonClicked != 0 }"
+          (click)="contactSellerClicked()">
+          <span class="mt-2 btnlh">CONTACT SELLER</span>
+        </div>
+        <div class="btn w-50 mob-btn-place-order h-100" [ngClass]="{ 'prod-clicked-tab': buttonClicked != 0 }"
+          (click)="openDialogComingsoon()">
+          <span class="mt-2 btnlh">PLACE ORDER</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isMobile" class="emptyspaceatbottom">
+
+</div>
